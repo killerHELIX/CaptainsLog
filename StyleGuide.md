@@ -1,4 +1,4 @@
-CPSC 430 TAP Style & Repository Guide
+CPSC 240 CaptainsLog Style & Repository Guide
 =====================================
 
 Table of Contents
