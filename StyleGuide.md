@@ -162,8 +162,7 @@ And so on. If using external resources (i.e. libraries found elsewhere),
 
 ## 1300 : Classes
 Before you write a class, find out if someone else has already made one we  
-could be using instead. Like Dr. Polack suggests, if it takes you more  
-than a day or two to find it, you're better off writing it yourself.  
+could be using instead.
 
 Standard encapsulation rules apply. If we have need to do any object-  
 oriented processing, then use appropriate accessor methods for reading and  
