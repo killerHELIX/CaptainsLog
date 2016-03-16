@@ -69,7 +69,7 @@ Before you pull code to your local repository, ensure that:
 Doing a manual merge with git can be bad news. I'll add information here  
 as we go (we're bound to run into a merge issue at least once). Usually  
 git will resolve merges on its own, but if you get an error on a  
-`git push` or a `git pull` that relates to merging, alert another Tapper  
+`git push` or a `git pull` that relates to merging, alert a team member  
 in the group text.  
 
 
@@ -410,7 +410,7 @@ each have one or two lines explaining the purpose of the variable. Methods
 each parameter, `@throws` tags for each potential exception thrown, and an  
 `@return` tag if it `return`s non-void. Example:  
 
-    /** Example class for TAP Style Guide
+    /** Example class for CaptainsLog Style Guide
      * @author James Murphy
      */
     public class ScrumTeam {
