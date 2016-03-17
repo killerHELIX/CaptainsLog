@@ -14,7 +14,7 @@ Josh
 * Saturday: All day
 * Sunday: > 4:00PM
 
-**Do Not Call:** 9:00AM - 5:00PM
+**Do Not Call:** 9:00AM - 5:00PM on Tuesdays and Thursdays
 
 James
 -----
