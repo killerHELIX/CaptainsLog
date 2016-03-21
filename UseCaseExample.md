@@ -2,7 +2,7 @@
 
 ### Template
 
-**Use Case Title**
+**Use Case Title**  
 **Description: ** Brief sentence or two describing intend purpose and result
 of use case.
 
