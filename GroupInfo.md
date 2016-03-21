@@ -40,14 +40,16 @@ Ryan
 
 **Do Not Call:** 9:00AM - 5:00PM
 
-Grant
+Stephen
 -----
-* Monday:
-* Tuesday:
-* Wednesday:
-* Thursday:
-* Friday:
-* Saturday:
-* Sunday:
+* Monday: Unavailable
+* Tuesday: > 2:00PM
+* Wednesday: 12:00PM - 5:00PM
+* Thursday: Unavailable
+* Friday: 11:00AM - 3:00PM
+* Saturday: < 1:00PM
+* Sunday: Unavailable
 
-**Do Not Call:**
+* Work schedule changes availabity on a case-by-case basis
+
+**Do Not Call:** Wednesday > 6:00PM
