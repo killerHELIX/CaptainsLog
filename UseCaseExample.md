@@ -3,7 +3,7 @@
 ### Template
 
 **Use Case Title**  
-**Description: ** Brief sentence or two describing intend purpose and result
+**Description**: Brief sentence or two describing intend purpose and result
 of use case.
 
 **Basic Path**:
