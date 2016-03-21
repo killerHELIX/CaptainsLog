@@ -50,6 +50,7 @@ Stephen
 * Saturday: < 1:00PM
 * Sunday: Unavailable
 
+
 * Work schedule changes availabity on a case-by-case basis
 
 **Do Not Call:** Wednesday > 6:00PM
