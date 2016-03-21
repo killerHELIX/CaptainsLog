@@ -22,7 +22,7 @@ of use case.
 
 ### Example (Taken from 430 project)
 **Print Graphical Plot to Screen**
-**Description: ** User can elect to print a graphical plot of specific data
+**Description**: User can elect to print a graphical plot of specific data
 points to the screen.
 
 **Basic Path**
