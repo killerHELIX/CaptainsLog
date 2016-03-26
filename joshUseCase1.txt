@@ -1,1 +1,17 @@
-1. Title: 
+1. Title: Creating an account with CaptainsLog
+2. Short Description: This software will allow its users to create an account.  
+3. Main Flow:
+	1) User will go to this software's website.
+	2) He/she will select the sign up option because he/she will be creating an account.
+	3) He/she will be prompted to first enter their full name.
+	4) He/she will enter their full name.
+	5) Then he/she will be prompted to enter in their email address. 
+	6) He/she will enter their email address.(A)	
+	7) Then he/she will be prompted to create a password.
+	8) He/she will create a password.
+	9) Once they have completed those three steps they will be ready to have an account with CaptainsLog and our social media service.
+	10) Lastly, they will recieve a confirmation email in which all they have to do is select a button in the email that says "Yes this is me."
+	11) Once the confirmation has been completed the user will now have created an account with CaptainsLog social media service.
+
+4. Alternative Flow:
+	(A) If the email address has been used before, then there will be a pop up screen that displays a message that does not allow the user to continue the process of creating an account past step 6 until he/she has entered in a new email. Therefore, he/she will be repeating step 5 until the enter a valid email.
