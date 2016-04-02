@@ -11,7 +11,8 @@ public class User extends Menu {
 	private ArrayList<User> following;
 	private int password;
 	
-	public User(String usrnm, String dspnm, passwd) {
+
+	public User(String usrnm, String dspnm, Object passwd) {
 		history = new ArrayList<>();
 		blacklist = new ArrayList<>();
 		followers = new ArrayList<>();
@@ -45,6 +46,7 @@ public class User extends Menu {
 			photo = null;
 		}
 	}
+<<<<<<< HEAD
 	
 	public void sortByTime(User currentUser) {
 
@@ -70,4 +72,11 @@ public class User extends Menu {
 	public void modifySettings(User currentUser){
 
 	}
+=======
+    
+    public ArrayList<Transmission> getHistory()
+    {
+        return history;
+    }
+>>>>>>> 0b980a0b818166d41570d5174fde14ca4a9d8267
 }
