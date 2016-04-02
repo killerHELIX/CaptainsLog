@@ -51,4 +51,9 @@ public class User extends Menu {
     {
         return history;
     }
+    
+    public void addToHistory(Transmission tr)
+    {
+        
+    }
 }
