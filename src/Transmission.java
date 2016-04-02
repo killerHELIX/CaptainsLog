@@ -16,19 +16,17 @@ public class Transmission {
      * @param target the targets meant to receive the transmission
      * @param author the User who created the transmission
      */
-    Transmission (String message, String hashtag, User target, User author){
-        this.message = message;
-        this.hashtags.add(hashtag);
-        this.target = target;
-        this.author = author;
-    }
 
-    Transmission (String message, String[] hashtags, User target, User author){
+    Transmission (String message, User target, User author){
         this.message = message;
-
-        for (int i = 0; i < hashtags.length; i++){
-            this.hashtags.add(hashtags[i]);
-        }
+		
+		// populate hashtags arraylist
+		String[] tokens = message.split(" ");
+		for (int i = 0; i < tokens.length; i++) {
+			if (tokens[i].charAt(0) == '#') {
+				this.hashtags.add(tokens[i]);
+			}
+		}
 
         this.target = target;
         this.author = author;
