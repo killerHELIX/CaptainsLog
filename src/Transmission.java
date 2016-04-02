@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Transmission {
 
     private String message;
-    private ArrayList<String> hashtag = new ArrayList<>();
+    private ArrayList<String> hashtags = new ArrayList<>();
     private boolean visibility = true;
     private User target = null;
     private User author;
@@ -18,7 +18,7 @@ public class Transmission {
      */
     Transmission (String message, String hashtag, User target, User author){
         this.message = message;
-        this.hashtag.add(hashtag);
+        this.hashtags.add(hashtag);
         this.target = target;
         this.author = author;
     }
@@ -46,9 +46,9 @@ public class Transmission {
         return message;
     }
 
-    public ArrayList<String> getHashtag(){
+    public ArrayList<String> getHashtags(){
 
-        return hashtag;
+        return hashtags;
     }
 
     public boolean isPublic(){
