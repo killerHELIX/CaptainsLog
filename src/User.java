@@ -21,11 +21,8 @@ public class User extends Menu {
 		photo = null;
 		username = usrnm;
 		displayName = dspnm;
-<<<<<<< HEAD
-                password = passwd;
-=======
 		password = passwd;
->>>>>>> 42d0b29b35ba211607ba7fb45708bb808cda80fb
+
 	}
 	
 	public String getUsername() {
@@ -46,51 +43,19 @@ public class User extends Menu {
 	
 	public void setPhoto(String filename) {
 		try {
-			photo = getASCIIArt(filename, true);
+			photo = IO.getASCIIArt(filename, true);
 		} catch (IOException e) {
 			photo = null;
 		}
 	}
-<<<<<<< HEAD
-    
-    public ArrayList<Transmission> getHistory()
-    {
-        return history;
-    }
-    
-    public void addToHistory(Transmission tr)
-    {
         
-    }
-=======
-	
-	public void sortByTime(User currentUser) {
-
-	} 
-	public void sortByPopularity(User currentUser) {
-
-	}
-	public User searchForUser(String user) {
-
-	}
-	public Transmission searchForTransmission(String transmission){
-
-	}
-	public void searchByHashtag(String hashtag){
-
-	}
-	public boolean login(String password, User selectedUser){
-
-	}
-	public boolean logout(){
-
-	}
-	public void modifySettings(User currentUser){
-
-	}
-	
-	public ArrayList<Transmission> getHistory() {
-		return history;
-	}
->>>>>>> 42d0b29b35ba211607ba7fb45708bb808cda80fb
+        public ArrayList<Transmission> getHistory()
+        {
+            return history;
+        }
+        
+        public void addToHistory()
+        {
+            
+        }
 }
