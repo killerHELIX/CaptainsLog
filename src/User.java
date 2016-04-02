@@ -2,15 +2,15 @@ import java.util.ArrayList;
 
 public class User extends Menu {
 
-    private String username;
-    private String displayName;
-    private String[] photo;
-    private ArrayList<Transmission> history;
-    private ArrayList<User> blacklist;
-    private ArrayList<User> followers;
-    private ArrayList<User> following;
-    private int password;
-    
+	private String username;
+	private String displayName;
+	private String[] photo;
+	private ArrayList<Transmission> history;
+	private ArrayList<User> blacklist;
+	private ArrayList<User> followers;
+	private ArrayList<User> following;
+	private int password;
+	
 	public User(String usrnm, String dspnm, passwd) {
 		history = new ArrayList<>();
 		blacklist = new ArrayList<>();
@@ -22,52 +22,52 @@ public class User extends Menu {
 		displayName = dspnm;
 	}
 	
-    public String getUsername() {
-        return username;
-    }
-    
-    public String getDisplayName() {
-        return displayName;
-    }
-    
-    public void setDisplayName(String dN) {
-        displayName = dN;
-    }
-    
-    public ArrayList<String[]> getPhoto() {
-        return photo;
-    }
-    
-    public void setPhoto(String filename) {
+	public String getUsername() {
+		return username;
+	}
+	
+	public String getDisplayName() {
+		return displayName;
+	}
+	
+	public void setDisplayName(String dN) {
+		displayName = dN;
+	}
+	
+	public ArrayList<String[]> getPhoto() {
+		return photo;
+	}
+	
+	public void setPhoto(String filename) {
 		try {
-        	photo = getASCIIart(filename, true);
-    	} catch (IOException e) {
+			photo = getASCIIart(filename, true);
+		} catch (IOException e) {
 			photo = null;
 		}
 	}
-    
-    public void sortByTime(User currentUser) {
+	
+	public void sortByTime(User currentUser) {
 
-    } 
-    public void sortByPopularity(User currentUser) {
+	} 
+	public void sortByPopularity(User currentUser) {
 
-    }
-    public User searchForUser(String user) {
+	}
+	public User searchForUser(String user) {
 
-    }
-    public Transmission searchForTransmission(String transmission){
+	}
+	public Transmission searchForTransmission(String transmission){
 
-    }
-    public void searchByHashtag(String hashtag){
+	}
+	public void searchByHashtag(String hashtag){
 
-    }
-    public boolean login(String password, User selectedUser){
+	}
+	public boolean login(String password, User selectedUser){
 
-    }
-    public boolean logout(){
+	}
+	public boolean logout(){
 
-    }
-    public void modifySettings(User currentUser){
+	}
+	public void modifySettings(User currentUser){
 
-    }
+	}
 }
