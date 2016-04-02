@@ -23,30 +23,29 @@ public class User extends Menu {
                 password = passwd;
 	}
 	
-	public String getUsername() {
-		return username;
-	}
-	
-	public String getDisplayName() {
-		return displayName;
-	}
-	
-	public void setDisplayName(String dN) {
-		displayName = dN;
-	}
-	
-	public ArrayList<String[]> getPhoto() {
-		return photo;
-	}
-	
-	public void setPhoto(String filename) {
+    public String getUsername() {
+        return username;
+    }
+    
+    public String getDisplayName() {
+        return displayName;
+    }
+    
+    public void setDisplayName(String dN) {
+        displayName = dN;
+    }
+    
+    public String[] getPhoto() {
+        return photo;
+    }
+    
+    public void setPhoto(String filename) {
 		try {
 			photo = getASCIIart(filename, true);
 		} catch (IOException e) {
 			photo = null;
 		}
 	}
-<<<<<<< HEAD
 	
 	public void sortByTime(User currentUser) {
 
@@ -72,11 +71,8 @@ public class User extends Menu {
 	public void modifySettings(User currentUser){
 
 	}
-=======
     
-    public ArrayList<Transmission> getHistory()
-    {
+    public ArrayList<Transmission> getHistory() {
         return history;
     }
->>>>>>> 0b980a0b818166d41570d5174fde14ca4a9d8267
 }
