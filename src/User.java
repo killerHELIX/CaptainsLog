@@ -36,5 +36,8 @@ public class User extends Menu {
         photo = filename;
     }
     
-    public
+    public ArrayList<Transmission> getHistory()
+    {
+        return history;
+    }
 }
