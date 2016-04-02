@@ -35,7 +35,7 @@ public class User extends Menu {
         displayName = dN;
     }
     
-    public ArrayList<String[]> getPhoto() {
+    public String[] getPhoto() {
         return photo;
     }
     
