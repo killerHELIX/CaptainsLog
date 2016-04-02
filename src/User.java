@@ -49,13 +49,31 @@ public class User extends Menu {
 		}
 	}
         
-        public ArrayList<Transmission> getHistory()
-        {
+        public ArrayList<Transmission> getHistory() {
             return history;
         }
         
-        public void addToHistory()
-        {
+        public void addToHistory(Transmission tr) {
+            
+        }
+        
+        public ArrayList<User> getFollowers() {
+            return followers;
+        }
+        
+        public void addFollower(User fo) {
+            
+        }
+        
+        public ArrayList<User> getFollowing() {
+            return following;
+        } 
+        
+        public boolean addFollowing(User us) {
+            
+        }
+        
+        public boolean removeFollowing(User us) {
             
         }
 }
