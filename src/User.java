@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class User extends Menu {
@@ -9,9 +10,9 @@ public class User extends Menu {
     private ArrayList<User> blacklist;
     private ArrayList<User> followers;
     private ArrayList<User> following;
-    private int password;
+    private String password;
     
-	public User (String usrnm, String dspnm, int passwd) {
+	public User (String usrnm, String dspnm, String passwd) {
 		history = new ArrayList<>();
 		blacklist = new ArrayList<>();
 		followers = new ArrayList<>();
@@ -41,7 +42,7 @@ public class User extends Menu {
     
     public void setPhoto(String filename) {
 		try {
-        	photo = getASCIIart(filename, true);
+        	photo = IO.getASCIIArt(filename, true);
     	} catch (IOException e) {
 			photo = null;
 		}
