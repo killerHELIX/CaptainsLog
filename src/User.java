@@ -2,17 +2,16 @@ import java.util.ArrayList;
 
 public class User extends Menu {
 
-	private String username;
-	private String displayName;
-	private String[] photo;
-	private ArrayList<Transmission> history;
-	private ArrayList<User> blacklist;
-	private ArrayList<User> followers;
-	private ArrayList<User> following;
-	private int password;
-	
-
-	public User(String usrnm, String dspnm, Object passwd) {
+    private String username;
+    private String displayName;
+    private String[] photo;
+    private ArrayList<Transmission> history;
+    private ArrayList<User> blacklist;
+    private ArrayList<User> followers;
+    private ArrayList<User> following;
+    private int password;
+    
+	public User (String usrnm, String dspnm, int passwd) {
 		history = new ArrayList<>();
 		blacklist = new ArrayList<>();
 		followers = new ArrayList<>();
@@ -21,6 +20,7 @@ public class User extends Menu {
 		photo = null;
 		username = usrnm;
 		displayName = dspnm;
+                password = passwd;
 	}
 	
 	public String getUsername() {
