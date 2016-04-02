@@ -15,7 +15,27 @@ public class User implements Menu {
     {
         return username;
     }
-
+    
+    public String getDisplayName()
+    {
+        return displayName;
+    }
+    
+    public void setDisplayName(String dN)
+    {
+        dN = displayName;
+    }
+    
+    public ArrayList<String[]> getPhoto()
+    {
+        return photo;
+    }
+    
+    public void setPhoto(ArrayList<String[]> ph)
+    {
+        ph = photo;
+    }
+    
     public void sortByTime(User currentUser){
 
     }
