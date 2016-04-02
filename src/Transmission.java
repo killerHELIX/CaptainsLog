@@ -32,19 +32,6 @@ public class Transmission {
         this.author = author;
     }
 
-    /**
-     *
-     * @param message the content of the transmission
-     * @param target the hashtags for the transmission
-     * @param author the User who created the transmission
-     */
-    Transmission (String message, User target, User author){
-
-        this.message = message;
-        this.target = target;
-        this.author = author;
-    }
-
     public User viewAuthor(){
 
         return author;
