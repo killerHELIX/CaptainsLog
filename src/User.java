@@ -22,6 +22,7 @@ public class User extends Menu {
 		username = usrnm;
 		displayName = dspnm;
 		password = passwd;
+
 	}
 	
 	public String getUsername() {
@@ -42,38 +43,37 @@ public class User extends Menu {
 	
 	public void setPhoto(String filename) {
 		try {
-			photo = getASCIIArt(filename, true);
+			photo = IO.getASCIIArt(filename, true);
 		} catch (IOException e) {
 			photo = null;
 		}
 	}
-	
-	public void sortByTime(User currentUser) {
-
-	} 
-	public void sortByPopularity(User currentUser) {
-
-	}
-	public User searchForUser(String user) {
-
-	}
-	public Transmission searchForTransmission(String transmission){
-
-	}
-	public void searchByHashtag(String hashtag){
-
-	}
-	public boolean login(String password, User selectedUser){
-
-	}
-	public boolean logout(){
-
-	}
-	public void modifySettings(User currentUser){
-
-	}
-	
-	public ArrayList<Transmission> getHistory() {
-		return history;
-	}
+        
+        public ArrayList<Transmission> getHistory() {
+            return history;
+        }
+        
+        public void addToHistory(Transmission tr) {
+            
+        }
+        
+        public ArrayList<User> getFollowers() {
+            return followers;
+        }
+        
+        public void addFollower(User fo) {
+            
+        }
+        
+        public ArrayList<User> getFollowing() {
+            return following;
+        } 
+        
+        public boolean addFollowing(User us) {
+            
+        }
+        
+        public boolean removeFollowing(User us) {
+            
+        }
 }
