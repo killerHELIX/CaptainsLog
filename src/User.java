@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class User extends Menu {
@@ -34,40 +35,15 @@ public class User extends Menu {
         displayName = dN;
     }
     
-    public ArrayList<String[]> getPhoto() {
+    public String[] getPhoto() {
         return photo;
     }
     
     public void setPhoto(String filename) {
 		try {
-        	photo = getASCIIart(filename, true);
+        	photo = IO.getASCIIArt(filename, true);
     	} catch (IOException e) {
 			photo = null;
 		}
 	}
-    
-    public void sortByTime(User currentUser) {
-
-    } 
-    public void sortByPopularity(User currentUser) {
-
-    }
-    public User searchForUser(String user) {
-
-    }
-    public Transmission searchForTransmission(String transmission){
-
-    }
-    public void searchByHashtag(String hashtag){
-
-    }
-    public boolean login(String password, User selectedUser){
-
-    }
-    public boolean logout(){
-
-    }
-    public void modifySettings(User currentUser){
-
-    }
 }
