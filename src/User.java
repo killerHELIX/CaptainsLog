@@ -42,7 +42,7 @@ public class User extends Menu {
 	
 	public void setPhoto(String filename) {
 		try {
-			photo = getASCIIart(filename, true);
+			photo = getASCIIArt(filename, true);
 		} catch (IOException e) {
 			photo = null;
 		}
