@@ -11,7 +11,7 @@ public class User extends Menu {
     private ArrayList<User> following;
     private int password;
     
-	public User (String usrnm, String dspnm, passwd) {
+	public User (String usrnm, String dspnm, int passwd) {
 		history = new ArrayList<>();
 		blacklist = new ArrayList<>();
 		followers = new ArrayList<>();
@@ -20,6 +20,7 @@ public class User extends Menu {
 		photo = null;
 		username = usrnm;
 		displayName = dspnm;
+                password = passwd;
 	}
 	
     public String getUsername() {
