@@ -5,8 +5,8 @@ public class Transmission {
 
     private String message;
     private ArrayList<String> hashtags;
-    private boolean visibility = true;
-    private User target = null;
+    private boolean visible; // if true, don't send only to target
+    private User target;
     private User author;
     private ArrayList<User> favoritedBy;
     private String timeCreated;
@@ -18,7 +18,8 @@ public class Transmission {
      * @param author the User who created the transmission
      */
 
-    Transmission (String message, User target, User author){
+    public Transmission (String message, User target, User author,
+		boolean isPrivate) {
         this.message = message;
 		
 		// populate hashtags arraylist
@@ -28,8 +29,10 @@ public class Transmission {
 				this.hashtags.add(tokens[i]);
 			}
 		}
-
-        this.target = target;
+		
+		visible = !isPrivate;
+		
+		this.target = target;
         this.author = author;
         this.timeCreated = LocalDateTime.now().toString();
     }
@@ -51,6 +54,6 @@ public class Transmission {
 
     public boolean isPublic(){
 
-        return visibility;
+        return visible;
     }
 }
