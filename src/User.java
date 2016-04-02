@@ -23,7 +23,7 @@ public class User implements Menu {
     
     public void setDisplayName(String dN)
     {
-        dN = displayName;
+        displayName = dN;
     }
     
     public ArrayList<String[]> getPhoto()
@@ -31,9 +31,9 @@ public class User implements Menu {
         return photo;
     }
     
-    public void setPhoto(ArrayList<String[]> ph)
+    public void setPhoto(String filename)
     {
-        ph = photo;
+        photo = filename;
     }
     
     public void sortByTime(User currentUser){
