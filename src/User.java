@@ -11,30 +11,25 @@ public class User extends Menu {
     private ArrayList<User> following = new ArrayList<>();
     private int password;
     
-    public String getUsername()
-    {
+    public String getUsername() {
         return username;
     }
     
-    public String getDisplayName()
-    {
+    public String getDisplayName() {
         return displayName;
     }
     
-    public void setDisplayName(String dN)
-    {
+    public void setDisplayName(String dN) {
         displayName = dN;
     }
     
-    public ArrayList<String[]> getPhoto()
-    {
+    public ArrayList<String[]> getPhoto() {
         return photo;
     }
     
-    public void setPhoto(String filename)
-    {
+    public void setPhoto(ArrayList<String[]> filename) {
+
         photo = filename;
     }
-    
-    public
+
 }
