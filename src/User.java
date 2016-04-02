@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class User implements Menu {
+public class User extends Menu {
 
     private String username;
     private String displayName;
@@ -31,7 +31,7 @@ public class User implements Menu {
     }
     
     public void setDisplayName(String dN) {
-        dN = displayName;
+        displayName = dN;
     }
     
     public ArrayList<String[]> getPhoto() {

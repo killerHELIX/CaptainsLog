@@ -1,12 +1,28 @@
 
-public interface Menu {
+public class Menu {
 
-    void sortByTime(User currentUser);
-    void sortByPopularity(User currentUser);
-    User searchForUser(String user);
-    Transmission searchForTransmission(String transmission);
-    void searchByHashtag(String hashtag);
-    boolean login(String password, User selectedUser);
-    boolean logout();
-    void modifySettings(User currentUser);
+    public void sortByTime(User currentUser){
+
+    }
+    public void sortByPopularity(User currentUser){
+
+    }
+    public User searchForUser(String user){
+
+    }
+    public Transmission searchForTransmission(String transmission){
+
+    }
+    public void searchByHashtag(String hashtag){
+
+    }
+    public boolean login(String password, User selectedUser){
+
+    }
+    public boolean logout(){
+
+    }
+    public void modifySettings(User currentUser){
+
+    }
 }
