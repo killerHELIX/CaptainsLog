@@ -12,7 +12,7 @@ public class Transmission {
     /**
      *
      * @param message the content of the transmission
-     * @param hashtag the hashtag for the transmission
+     * @param hashtag the hashtags for the transmission
      * @param target the targets meant to receive the transmission
      * @param author the User who created the transmission
      */
@@ -23,10 +23,21 @@ public class Transmission {
         this.author = author;
     }
 
+    Transmission (String message, String[] hashtags, User target, User author){
+        this.message = message;
+
+        for (int i = 0; i < hashtags.length; i++){
+            this.hashtags.add(hashtags[i]);
+        }
+
+        this.target = target;
+        this.author = author;
+    }
+
     /**
      *
      * @param message the content of the transmission
-     * @param target the hashtag for the transmission
+     * @param target the hashtags for the transmission
      * @param author the User who created the transmission
      */
     Transmission (String message, User target, User author){
