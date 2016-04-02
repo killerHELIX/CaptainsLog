@@ -10,5 +10,5 @@ public class User implements Menu {
     private ArrayList<User> followers = new ArrayList<>();
     private ArrayList<User> following = new ArrayList<>();
     private int password;
-
+   
 }
