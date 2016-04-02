@@ -10,6 +10,11 @@ public class User extends Menu {
     private ArrayList<User> followers = new ArrayList<>();
     private ArrayList<User> following = new ArrayList<>();
     private int password;
+    
+    public String getUsername()
+    {
+        return username;
+    }
 
     public void sortByTime(User currentUser){
 
