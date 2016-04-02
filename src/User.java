@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class User implements Menu {
+public class User extends Menu {
 
     private String username;
     private String displayName;
