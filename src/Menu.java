@@ -1,8 +1,24 @@
+import java.util.ArrayList;
 
 public class Menu {
 
-    public void sortByTime(User currentUser){
+    public void sortByTime(User currentUser, ArrayList<User> followingUsers){
 
+        ArrayList<Transmission> viewableTransmissions = new ArrayList<>();
+
+        // Populate viewableTransmissions arrayList
+        for (User u : followingUsers){
+
+            for (Transmission t : u.getHistory()) {
+
+                viewableTransmissions.add(t);
+            }
+        }
+
+        for (Transmission t : viewableTransmissions) {
+
+            System.out.println(t.getMessage());
+        }
     }
     public void sortByPopularity(User currentUser){
 
