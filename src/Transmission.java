@@ -56,4 +56,8 @@ public class Transmission {
     public boolean isPublic(){
         return visible;
     }
+
+    public String getTimeCreated(){
+        return this.timeCreated;
+    }
 }
