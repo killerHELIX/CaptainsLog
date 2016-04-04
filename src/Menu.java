@@ -1,6 +1,7 @@
 import java.util.ArrayList;
+import java.util.Comparator;
 
-public class Menu {
+public class Menu implements Comparator<Transmission> {
 
     public void sortByTime(User currentUser, ArrayList<User> followingUsers){
 
