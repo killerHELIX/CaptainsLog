@@ -2,11 +2,14 @@
  * @author James Murphy
  */
 
+import java.lang.Integer;
+import java.util.Comparator;
+
 public class TCompByPopularity implements Comparator {
 	public int compare(Object x, Object y) {
 		Transmission a = (Transmission) x;
 		Transmission b = (Transmission) y;
-		return Integer(a.getNumFavorites()).compareTo(
-			Integer(b.getNumFavorites()));
+		return new Integer(a.getNumFavorites()).compareTo(
+			new Integer(b.getNumFavorites()));
 	}
 }
