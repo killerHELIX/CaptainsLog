@@ -9,7 +9,7 @@ public class Transmission {
     private User target;
     private User author;
     private ArrayList<User> favoritedBy;
-    private String timeCreated;
+    private LocalDateTime timeCreated;
 
     /**
      *
@@ -34,7 +34,7 @@ public class Transmission {
 		
 		this.target = target;
         this.author = author;
-        this.timeCreated = LocalDateTime.now().toString();
+        this.timeCreated = LocalDateTime.now();
     }
 
     public User viewAuthor(){
@@ -56,4 +56,12 @@ public class Transmission {
     public boolean isPublic(){
         return visible;
     }
+	
+	public LocalDateTime getTime() {
+		return timeCreated;
+	}
+	
+	public String getTimestamp() {
+		return timeCreated.toString();
+	}
 }
