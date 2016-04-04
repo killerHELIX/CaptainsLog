@@ -38,22 +38,22 @@ public class Transmission {
     }
 
     public User viewAuthor(){
-
         return author;
     }
 
     public String getMessage(){
-
         return message;
     }
 
     public ArrayList<String> getHashtags(){
-
         return hashtags;
     }
-
+	
+	public int getNumFavorites() {
+		return favoritedBy.size();
+	}
+	
     public boolean isPublic(){
-
         return visible;
     }
 }

@@ -4,7 +4,7 @@
 
 **Use Case Title**  
 **Description**: Brief sentence or two describing intend purpose and result
-of use case.
+of use case...
 
 **Basic Path**:
   * 1. Action for step 1.
