@@ -1,9 +1,11 @@
+import java.util.ArrayList;
 
 public class Main {
-  private User= new User();
-  private Transmission = new Transmission();
-  private IO = new IO();
-  private Interface = new Interface();
-  
-  User.
+	public static void main(String[] args) {
+
+        ArrayList<User> masterUserList = new ArrayList<>();
+        ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
+        
+		System.out.println(" --- ");
+	}
 }

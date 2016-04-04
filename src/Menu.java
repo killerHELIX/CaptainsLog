@@ -1,28 +1,34 @@
+import java.util.ArrayList;
+import java.util.Comparator;
 
 public class Menu {
 
-    public void sortByTime(User currentUser){
-
+    public void sortByPopularity(User currentUser) {
+		// TODO
     }
-    public void sortByPopularity(User currentUser){
-
+	
+    public User searchForUser(String user) {
+		// TODO
+		return null; // added null return for compilation
     }
-    public User searchForUser(String user){
-
+    public Transmission searchForTransmission(String transmission) {
+		// TODO
+		return null; // added null return for compilation
     }
-    public Transmission searchForTransmission(String transmission){
-
+	
+    public void searchByHashtag(String hashtag) {
+		// TODO
     }
-    public void searchByHashtag(String hashtag){
-
+    public boolean login(String password, User selectedUser) {
+		// TODO
+		return false; // added false return for compilation
     }
-    public boolean login(String password, User selectedUser){
-
+    public boolean logout() {
+		// TODO
+		// XXX does this need a boolean return value?
+		return false; // added false return for compilation
     }
-    public boolean logout(){
-
-    }
-    public void modifySettings(User currentUser){
-
+    public void modifySettings(User currentUser) {
+		// TODO
     }
 }

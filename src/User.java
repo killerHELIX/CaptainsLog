@@ -3,15 +3,15 @@ import java.util.ArrayList;
 
 public class User extends Menu {
 
-    private String username;
-    private String displayName;
-    private String[] photo;
-    private ArrayList<Transmission> history;
-    private ArrayList<User> blacklist;
-    private ArrayList<User> followers;
-    private ArrayList<User> following;
-    private String password;
-    
+	private String username;
+	private String displayName;
+	private String[] photo;
+	private ArrayList<Transmission> history;
+	private ArrayList<User> blacklist;
+	private ArrayList<User> followers;
+	private ArrayList<User> following;
+	private String password;
+	
 	public User (String usrnm, String dspnm, String passwd) {
 		history = new ArrayList<>();
 		blacklist = new ArrayList<>();
@@ -48,6 +48,7 @@ public class User extends Menu {
 			photo = null;
 		}
 	}
+<<<<<<< HEAD
         
         public ArrayList<Transmission> getHistory() {
             return history;
@@ -76,4 +77,34 @@ public class User extends Menu {
         public boolean removeFollowing(User us) {
             
         }
+=======
+		
+	public ArrayList<Transmission> getHistory() {
+		return history;
+	}
+		
+	public void addToHistory(Transmission tr) {
+		history.add(tr);
+	}
+		
+	public ArrayList<User> getFollowers() {
+		return followers;
+	}
+		
+	public void addFollower(User fo) {
+		followers.add(fo);
+	}
+		
+	public ArrayList<User> getFollowing() {
+		return following;
+	} 
+
+	public void addFollowing(User us) {
+		following.add(us);
+	}
+
+	public void removeFollowing(User us) {
+		following.remove(us);
+	}
+>>>>>>> 862a5f76126c61b1dd878d69412e888239abc5cf
 }
