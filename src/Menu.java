@@ -30,9 +30,8 @@ public class Menu {
         }
     }
 	
-    public User searchForUser(ArrayList<User> masterUserList) {
+    public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
-        Scanner t = new Scanner (System.in);
         String nm = t.next();
             
         for (User u : masterUserList){
