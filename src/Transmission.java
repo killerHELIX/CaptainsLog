@@ -35,6 +35,7 @@ public class Transmission {
 		this.target = target;
         this.author = author;
         this.timeCreated = LocalDateTime.now();
+        author.addToHistory(this);
     }
 
     public User getAuthor(){
