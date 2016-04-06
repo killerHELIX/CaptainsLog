@@ -13,19 +13,7 @@ public class Menu {
 
     public void sortByPopularity(User currentUser, ArrayList<Transmission> masterTransmissionList) {
 
-        ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
-
-        for (User u : currentUser.getFollowing()){
-
-            if (u.getHistory().isEmpty()){
-                System.out.println(u.getDisplayName() + " has no Transmissions");
-            }
-
-            for (Transmission t : u.getHistory()){
-
-                visibleTransmissions.add(t);
-            }
-        }
+        ArrayList<Transmission> visibleTransmissions = getVisibleTransmissions(currentUser, masterTransmissionList);
 
         Collections.sort(visibleTransmissions, new TCompByPopularity());
 
@@ -36,19 +24,7 @@ public class Menu {
 
     public void sortByTime(User currentUser, ArrayList<Transmission> masterTransmissionList) {
 
-        ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
-
-        for (User u : currentUser.getFollowing()){
-
-            if (u.getHistory().isEmpty()){
-                System.out.println(u.getDisplayName() + " has no Transmissions");
-            }
-
-            for (Transmission t : u.getHistory()){
-
-                visibleTransmissions.add(t);
-            }
-        }
+        ArrayList<Transmission> visibleTransmissions = getVisibleTransmissions(currentUser, masterTransmissionList);
 
         Collections.sort(visibleTransmissions, new TCompByTime());
 
@@ -72,7 +48,7 @@ public class Menu {
 		return null; // added null return for compilation
     }
     public Transmission searchForTransmission(String transmission) {
-		// TODO
+
 		return null; // added null return for compilation
     }
 	
@@ -90,5 +66,25 @@ public class Menu {
     }
     public void modifySettings(User currentUser) {
 		// TODO
+    }
+
+    private ArrayList<Transmission> getVisibleTransmissions(User currentUser,
+                                                            ArrayList<Transmission> masterTransmissionList){
+
+        ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
+
+        for (User u : currentUser.getFollowing()){
+
+            if (u.getHistory().isEmpty()){
+                System.out.println(u.getDisplayName() + " has no Transmissions");
+            }
+
+            for (Transmission t : u.getHistory()){
+
+                visibleTransmissions.add(t);
+            }
+        }
+
+        return visibleTransmissions;
     }
 }
