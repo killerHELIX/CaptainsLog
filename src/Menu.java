@@ -5,6 +5,8 @@
  *  @author Stephen Wilson
  */
 
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.RegularExpression;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -47,7 +49,23 @@ public class Menu {
         }
 		return null; // added null return for compilation
     }
-    public Transmission searchForTransmission(String transmission) {
+    public Transmission searchForTransmission(String transmission, User currentUser, ArrayList<Transmission> mtl) {
+
+        ArrayList<Transmission> visibleTransmissions = getVisibleTransmissions(currentUser, mtl);
+        boolean foundTransmission = false;
+
+        for (Transmission t : visibleTransmissions) {
+
+            if (t.getMessage().contains(transmission)) {
+
+                System.out.println(t.getAuthor().getDisplayName() + " at " + t.getTimestamp() + ": " + t.getMessage());
+                foundTransmission = true;
+            }
+        }
+
+        if (!foundTransmission) {
+            System.out.println("No transmission found containing your search.");
+        }
 
 		return null; // added null return for compilation
     }
