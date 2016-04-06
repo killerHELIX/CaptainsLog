@@ -9,10 +9,16 @@ public class Menu {
 
         ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
 
-        // populate visibleTransmissions list
-        for (Transmission t : masterTransmissionList){
-            if (currentUser.getFollowing().contains(t.getAuthor())){
+        for (User u : currentUser.getFollowing()){
+            System.out.println("Entered first for loop.");
 
+            if (u.getHistory().isEmpty()){
+                System.out.println("u.getHistory is empty");
+            }
+
+            for (Transmission t : u.getHistory()){
+
+                System.out.println("True");
                 visibleTransmissions.add(t);
             }
         }

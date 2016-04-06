@@ -8,7 +8,7 @@ public class Transmission {
     private boolean visible; // if true, don't send only to target
     private User target;
     private User author;
-    private ArrayList<User> favoritedBy;
+    private ArrayList<User> favoritedBy = new ArrayList<>(0);
     private LocalDateTime timeCreated;
 
     /**
