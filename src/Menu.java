@@ -93,10 +93,6 @@ public class Menu {
 
         for (User u : currentUser.getFollowing()){
 
-            if (u.getHistory().isEmpty()){
-                System.out.println(u.getDisplayName() + " has no Transmissions");
-            }
-
             for (Transmission t : u.getHistory()){
 
                 visibleTransmissions.add(t);
