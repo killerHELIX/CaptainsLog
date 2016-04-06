@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Scanner;
 
 public class Menu {
@@ -25,6 +24,29 @@ public class Menu {
 
         for (Transmission t : visibleTransmissions){
             System.out.println(t.getMessage());
+        }
+    }
+
+    public void sortByTime(User currentUser, ArrayList<Transmission> masterTransmissionList) {
+
+        ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
+
+        for (User u : currentUser.getFollowing()){
+
+            if (u.getHistory().isEmpty()){
+                System.out.println(u.getDisplayName() + " has no Transmissions");
+            }
+
+            for (Transmission t : u.getHistory()){
+
+                visibleTransmissions.add(t);
+            }
+        }
+
+        Collections.sort(visibleTransmissions, new TCompByTime());
+
+        for (Transmission t : visibleTransmissions){
+            System.out.println(t.getTimestamp() + ": " + t.getMessage());
         }
     }
 	
