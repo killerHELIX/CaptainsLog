@@ -10,15 +10,13 @@ public class Menu {
         ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
 
         for (User u : currentUser.getFollowing()){
-            System.out.println("Entered first for loop.");
 
             if (u.getHistory().isEmpty()){
-                System.out.println("u.getHistory is empty");
+                System.out.println(u.getDisplayName() + " has no Transmissions");
             }
 
             for (Transmission t : u.getHistory()){
 
-                System.out.println("True");
                 visibleTransmissions.add(t);
             }
         }
