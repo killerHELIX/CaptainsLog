@@ -5,7 +5,7 @@ public class Main {
 
         ArrayList<User> masterUserList = new ArrayList<>();
         ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
-        
-		System.out.println(" --- ");
+                
+        System.out.println(" --- ");
 	}
 }
