@@ -1,3 +1,8 @@
+/** Transmission data member for CaptainsLog.
+ *  @author Ryan Harris
+ *  @author James Murphy
+ */
+
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 

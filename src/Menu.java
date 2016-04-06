@@ -1,3 +1,10 @@
+/** Menu class for CaptainsLog.
+ *  @author James Murphy
+ *  @author Ryan Harris
+ *  @author Josh Williams
+ *  @author Stephen Wilson
+ */
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
