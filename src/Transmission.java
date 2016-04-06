@@ -37,7 +37,7 @@ public class Transmission {
         this.timeCreated = LocalDateTime.now();
     }
 
-    public User viewAuthor(){
+    public User getAuthor(){
         return author;
     }
 
