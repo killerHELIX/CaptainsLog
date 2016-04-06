@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Scanner;
 
 public class Menu {
 
@@ -29,14 +30,17 @@ public class Menu {
         }
     }
 	
-    public User searchForUser(String username, ArrayList<User> masterUserList) {
+    public User searchForUser(ArrayList<User> masterUserList) {
 
+        Scanner t = new Scanner (System.in);
+        String nm = t.next();
+            
         for (User u : masterUserList){
-
-            if (u.getUsername().equals(username)){
+            
+            if (u.getUsername().equals(nm)){
 
                 System.out.println("found user: " + u.getUsername());
-
+                
             }
         }
 		return null; // added null return for compilation
