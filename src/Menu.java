@@ -72,19 +72,20 @@ public class Menu {
     public void searchByHashtag(String hashtag) {
 		// TODO
     }
-    public boolean login(String password, User selectedUser, Scanner y) {
-        if (y.getUser().contains(User)){
-        System.out.println(y.getUser + ": Welcome!");
+    public boolean login(String password, String username, User selectedUser, Scanner y) {
+        
+        if ((selectedUser.getUsername()).contains(username)){
+        System.out.println(selectedUser.getUsername() + ": Welcome!");
         }
         else  
         {
             System.out.println("User not found");
         }
         
-        if (y.getpassword().contains(password))
+        if (selectedUser.getPassword().contains(password))
         {
-            Sytem.out.println(y.getpassword + ": Password Correct: Welcome " + 
-                    y.getUser());
+            System.out.println(selectedUser.getPassword() + ": Password Correct: Welcome " + 
+                    selectedUser.getUsername());
         }
         else
         {
