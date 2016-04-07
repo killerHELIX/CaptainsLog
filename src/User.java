@@ -76,4 +76,13 @@ public class User extends Menu {
 	public void removeFollowing(User us) {
 		following.remove(us);
 	}
+        
+        public String getPassword() {
+            return password;
+        }
+        
+        public void setPassword(String pass) {
+            password = pass;
+        }
+                
 }
