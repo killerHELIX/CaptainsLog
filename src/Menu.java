@@ -72,28 +72,33 @@ public class Menu {
     public void searchByHashtag(String hashtag) {
 		// TODO
     }
-    public boolean login(String password, String username, User selectedUser, Scanner y) {
-        
-        if ((selectedUser.getUsername()).contains(username)){
-        System.out.println(selectedUser.getUsername() + ": Welcome!");
+    public User login(Scanner y, ArrayList<User> masterUserList) {
+
+        System.out.println("Welcome.  Enter your username: ");
+        String input = y.next();
+
+        for (User u : masterUserList){
+
+            if (u.getUsername().equals(input)){
+
+                System.out.println("User successfully found.  Enter your password: ");
+                input = y.next();
+
+                if (u.isPasswordMatched(input)){
+
+                    System.out.println("Password successfully matched.  Welcome, " + u.getUsername() + ".");
+                    return u;
+
+                } else {
+
+                    System.out.println("Password not matched.");
+                }
+            }
         }
-        else  
-        {
-            System.out.println("User not found");
-        }
-        
-        if (selectedUser.getPassword().contains(password))
-        {
-            System.out.println(selectedUser.getPassword() + ": Password Correct: Welcome " + 
-                    selectedUser.getUsername());
-        }
-        else
-        {
-        System.out.println("Credentials incorrect.  Make corrections");
-        }
-		
-		return false; // added false return for compilation
+
+        return null;
     }
+    
     public boolean logout() {
 		// TODO
 		// XXX does this need a boolean return value?
