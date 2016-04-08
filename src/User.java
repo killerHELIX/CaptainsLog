@@ -79,10 +79,7 @@ public class User extends Menu {
 
 	public boolean isPasswordMatched (String in){
 
-        if (in.equals(this.password)){
-            return true;
-        } else {
-            return false;
-        }
+        return (in.equals(this.password));
+
     }
 }
