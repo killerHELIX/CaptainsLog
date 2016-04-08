@@ -77,9 +77,8 @@ public class User extends Menu {
 		following.remove(us);
 	}
 
-	public boolean isPasswordMatched (String in){
+	public boolean isPasswordMatched (String in) {
 
         return (in.equals(this.password));
-
     }
 }
