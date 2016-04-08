@@ -76,4 +76,13 @@ public class User extends Menu {
 	public void removeFollowing(User us) {
 		following.remove(us);
 	}
+
+	public boolean isPasswordMatched (String in){
+
+        if (in.equals(this.password)){
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
