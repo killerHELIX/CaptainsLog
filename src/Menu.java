@@ -44,10 +44,11 @@ public class Menu {
             if (u.getUsername().equals(nm)){
 
                 System.out.println("found user: " + u.getUsername());
+                return u;
                 
             }
         }
-		return null; // added null return for compilation
+		return null;
     }
     public Transmission searchForTransmission(String transmission, User currentUser, ArrayList<Transmission> mtl) {
 
