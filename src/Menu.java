@@ -87,6 +87,7 @@ public class Menu {
                 if (u.isPasswordMatched(input)){
 
                     System.out.println("Password successfully matched.  Welcome, " + u.getUsername() + ".");
+                    System.out.println();
                     return u;
 
                 } else {
