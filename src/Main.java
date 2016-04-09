@@ -16,6 +16,8 @@ public class Main {
         Menu menu = new Menu();
         User currentUser = new User();
         User searchedUser = new User();
+        ArrayList<User> masterUserList = new ArrayList<>();
+        ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
 
         User user = new User ("username", "displayname", "password");
         User user2 = new User ("username2", "displayname2", "password2");
@@ -25,13 +27,10 @@ public class Main {
         user3.addFollowing(user2);
         user.addFollowing(user3);
 
-        Transmission t1 = new Transmission("message1 from user to user2", user2, user, true);
-        Transmission t2 = new Transmission("message2 from user 2 to user3", user3, user2, true);
-        Transmission t3 = new Transmission("message3 from user 3 to user", user, user3, true);
-
-        ArrayList<User> masterUserList = new ArrayList<>();
-        ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
-
+        Transmission t1 = new Transmission("message1 from user to user2", user2, true, masterUserList);
+        Transmission t2 = new Transmission("message2 from user 2 to user3", user3, true, masterUserList);
+        Transmission t3 = new Transmission("message3 from user 3 to user", user, true, masterUserList);
+        
         masterUserList.add(user);
         masterUserList.add(user2);
         masterUserList.add(user3);
@@ -76,7 +75,7 @@ public class Main {
 
                 case "searchForUser":
                     menu.searchForUser(masterUserList, in);
-
+                    Main.sleep(500);
                     break;
 
                 case "searchForTransmission":
