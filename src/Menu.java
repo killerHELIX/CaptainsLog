@@ -70,8 +70,10 @@ public class Menu {
 		return null; // added null return for compilation
     }
 	
-    public void searchByHashtag(String hashtag) {
-		// TODO
+    public void searchByHashtag(ArrayList<User> masterTransmissionList, Scanner t) {
+		
+        System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
+        String hashtag = t.next();
     }
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
