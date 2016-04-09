@@ -70,10 +70,14 @@ public class Menu {
 		return null; // added null return for compilation
     }
 	
-    public void searchByHashtag(ArrayList<User> masterTransmissionList, Scanner t) {
+    public void searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
 		
         System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
         String hashtag = t.next();
+        
+        for (Transmission h : masterTransmissionList) {
+            
+        }
     }
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
@@ -103,7 +107,7 @@ public class Menu {
         return null;
     }
     
-    public boolean logout(Scanner y, ArrayList<User> masterUserList) {
+    public boolean logout(Scanner y) {
 		
                 System.out.println("Are you sure you want to logout?");
                 String inp = y.next();
