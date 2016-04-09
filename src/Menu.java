@@ -77,6 +77,10 @@ public class Menu {
         
         for (Transmission h : masterTransmissionList) {
             
+            if (h.getMessage().contains(hashtag)){
+                
+                System.out.println(h.getAuthor().getDisplayName());
+            }     
         }
     }
     
