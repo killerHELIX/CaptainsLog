@@ -36,6 +36,7 @@ public class Menu {
 	
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
+        System.out.println("Please enter the username of the user that you would like to search for: ");
         String nm = t.next();
             
         for (User u : masterUserList){
@@ -43,10 +44,11 @@ public class Menu {
             if (u.getUsername().equals(nm)){
 
                 System.out.println("found user: " + u.getUsername());
+                return u;
                 
             }
         }
-		return null; // added null return for compilation
+		return null;
     }
     public Transmission searchForTransmission(String transmission, User currentUser, ArrayList<Transmission> mtl) {
 
@@ -69,9 +71,20 @@ public class Menu {
 		return null; // added null return for compilation
     }
 	
-    public void searchByHashtag(String hashtag) {
-		// TODO
+    public void searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
+		
+        System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
+        String hashtag = t.next();
+        
+        for (Transmission h : masterTransmissionList) {
+            
+            if (h.getMessage().contains(hashtag)){
+                
+                System.out.println(h.getAuthor().getDisplayName() + " composed a transmission with your entered hashtag, and their transmission stated: " + h.getMessage());
+            }     
+        }
     }
+    
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
         System.out.println("Welcome.  Enter your username: ");
@@ -87,6 +100,7 @@ public class Menu {
                 if (u.isPasswordMatched(input)){
 
                     System.out.println("Password successfully matched.  Welcome, " + u.getUsername() + ".");
+                    System.out.println();
                     return u;
 
                 } else {
@@ -99,11 +113,23 @@ public class Menu {
         return null;
     }
     
-    public boolean logout() {
-		// TODO
-		// XXX does this need a boolean return value?
-		return false; // added false return for compilation
+    public boolean logout(Scanner y) {
+		
+                System.out.println("Are you sure you want to logout?");
+                String inp = y.next();
+                    
+                    if (inp.equals("yes")) {
+                        
+                        System.out.println("Logout was successful");
+                        return true;
+                    } else if (inp.equals("no")) {
+                    
+                        System.out.println("Continue browsing through CaptainsLog");
+                        return false;
+                    }
+                return false;             
     }
+    
     public void modifySettings(User currentUser) {
 		// TODO
     }

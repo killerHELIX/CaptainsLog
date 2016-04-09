@@ -29,6 +29,7 @@ public class Transmission {
         this.message = message;
 		
 		// populate hashtags arraylist
+        this.hashtags = new ArrayList<>();
 		String[] tokens = message.split(" ");
 		
 		targets = new ArrayList<>();

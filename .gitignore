@@ -10,10 +10,11 @@ manifest.mf
 /out/
 /CaptainsLog/
 src/Tester.class
-    IO.class
-        Main.class
-            Menu.class
-                TCompByPopularity.class
-                    TCompByTime.class
-                        Transmission.class
-                            User.class
+IO.class
+Main.class
+Menu.class
+TCompByPopularity.class
+TCompByTime.class
+Transmission.class
+User.class
+/src/.User.java.swp
