@@ -9,6 +9,9 @@ import java.util.Scanner;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.File;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 
 public class IO {
 	/** Obtains ASCII art from a file.
@@ -34,13 +37,13 @@ public class IO {
 		
 		/* Ensure that avatar is a perfectly square ASCII art portrait. */
 		int height = picture.size();
-				if (avatar) {
-				for (String line : picture) {
-					if (line.length() != height) {
-						throw new IOException(
-							"Avatar is not a perfect square!");
-					}
+		if (avatar) {
+			for (String line : picture) {
+				if (line.length() != height) {
+					throw new IOException(
+						"Avatar is not a perfect square!");
 				}
+			}
 		}
 		
 		Object[] temp = picture.toArray();
@@ -49,5 +52,21 @@ public class IO {
 			output[i] = (String) temp[i];
 		}
 		return output;
-	}	
+	}
+	
+	public static void saveTransmissions(String filename,
+		ArrayList<Transmission> transmissions) throws FileNotFoundException,
+		UnsupportedEncodingException {
+		PrintWriter tout = new PrintWriter(filename, "UTF-8");
+		for (Transmission t : transmissions) {
+			tout.println(t.toRecord());
+		}
+		tout.close();
+	}
+	
+	public static void loadTransmissions(String filename,
+		ArrayList<Transmission> transmissions) {
+		
+		
+	}
 }
