@@ -80,7 +80,7 @@ public class Menu {
             
             if (h.getMessage().contains(hashtag)){
                 
-                System.out.println(h.getAuthor().getDisplayName());
+                System.out.println(h.getAuthor().getDisplayName() + " composed a transmission with your entered hashtag, and their transmission stated: " + h.getMessage());
             }     
         }
     }
