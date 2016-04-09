@@ -11,6 +11,19 @@ public class User extends Menu {
 	private ArrayList<User> followers;
 	private ArrayList<User> following;
 	private String password;
+
+    public User() {
+        history = new ArrayList<>();
+        blacklist = new ArrayList<>();
+        followers = new ArrayList<>();
+        following = new ArrayList<>();
+
+        photo = null;
+        username = "";
+        displayName = "";
+        password = "";
+
+    }
 	
 	public User (String usrnm, String dspnm, String passwd) {
 		history = new ArrayList<>();
@@ -70,6 +83,8 @@ public class User extends Menu {
 	} 
 
 	public void addFollowing(User us) {
+        
+        us.addFollower(this);
 		following.add(us);
 	}
 
