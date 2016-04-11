@@ -29,7 +29,7 @@ public class Main {
         masterUserList.add(user2);
         masterUserList.add(user3);
         
-		user.addFollowing(user2);
+        user.addFollowing(user2);
         user3.addFollowing(user2);
         user2.addFollowing(user3);
 
@@ -40,12 +40,12 @@ public class Main {
         Transmission t2 = new Transmission("message2 from user2 to @user3",
                 user2, true, masterUserList);
         Transmission t3 = new Transmission("message3 from user3 to @user",
-                user3, true, masterUserList);
+                user3, true, masterUserList); 
 
 
         masterTransmissionList.add(t1);
         masterTransmissionList.add(t2);
-        masterTransmissionList.add(t3);*/
+        masterTransmissionList.add(t3); */
 
         boolean isInMenu = true;
         boolean isLoggedIn = false;
@@ -103,8 +103,7 @@ public class Main {
                     break;
 
                 case "searchByHashtag":
-                    // TODO
-
+                    menu.searchByHashtag(masterTransmissionList, in);
                     break;
 
                 case "logout":
