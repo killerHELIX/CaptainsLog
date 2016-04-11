@@ -64,9 +64,28 @@ public class IO {
 		tout.close();
 	}
 	
-	public static void loadTransmissions(String filename,
-		ArrayList<Transmission> transmissions) {
+	public static ArrayList<Transmission>
+		loadTransmissions(String filename, ArrayList<User> users) {
+
+		ArrayList<Transmission> transmissions = new ArrayList<>();
+		Scanner fileIn = null;
+		try {
+			fileIn = new Scanner(new FileReader(filename));
 		
+		} catch (Exception e) {
+			// XXX probably should do something with this
+		}
 		
+		String line = "";
+		while (fileIn.hasNextLine()) {
+			try {
+				line = fileIn.nextLine();
+				transmissions.add(Transmission.fromRecord(line, users));
+			} catch (Exception e) {
+				// XXX Who needs exception handling? HAH
+			}
+		}
+		
+		return transmissions;
 	}
 }

@@ -23,7 +23,6 @@ public class Main {
         User user2 = new User ("username2", "displayname2", "password2");
         User user3 = new User ("username3", "displayname3", "password3");
 		
-        ArrayList<User> masterUserList = new ArrayList<>();
         masterUserList.add(user);
         masterUserList.add(user2);
         masterUserList.add(user3);
@@ -39,7 +38,6 @@ public class Main {
         Transmission t3 = new Transmission("message3 from user3 to @user",
 			user3, true, masterUserList);
 
-        ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
 
         masterTransmissionList.add(t1);
         masterTransmissionList.add(t2);

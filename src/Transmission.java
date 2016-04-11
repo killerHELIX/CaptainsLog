@@ -84,6 +84,15 @@ public class Transmission {
 		return timeCreated;
 	}
 	
+	/** User u likes this transmission. */
+	public void isLikedBy(User u) {
+		this.favoritedBy.add(u);
+	}
+	
+	private void setTime(LocalDateTime t) {
+		timeCreated = t;
+	}
+	
 	public String getTimestamp() {
 		return timeCreated.toString();
 	}
@@ -106,7 +115,47 @@ public class Transmission {
 			app += "," + appreciators[i].toString();
 		} 
 		
-		return author.toString()+"\f"+Boolean.toString(visible)+"\f"+
-			app+"\f"+timeCreated.toString();
+		return author.toString()+"\f"+message+"\f"+
+			Boolean.toString(visible)+"\f"+app+"\f"+timeCreated.toString();
 	}
+	
+	public static Transmission fromRecord(String record,
+		ArrayList<User> users) throws Exception {
+		
+		String[] fields = record.split("\f");
+		User author = null;
+		// name match to find author
+		for (User u : users) {
+			if (fields[0].split(" ")[0].equals(u.getUsername())) {
+				author = u;
+				break;
+			}
+		}
+		
+		if (author == null) {
+			throw new Exception("Author of message '" + fields[1] +
+				"' does not exist!");
+		}
+		
+		boolean vis = Boolean.parseBoolean(fields[2]);
+		LocalDateTime timestamp = LocalDateTime.parse(fields[4]);
+		
+		// create the new transmission object
+		Transmission tr = new Transmission(fields[1], author, vis, users);
+		tr.setTime(timestamp);
+		
+		// parse favoriters of message
+		String[] favoritedBy = fields[3].split(",");
+		for (String s : favoritedBy) {
+			for (User u : users) {
+				if (s.split(" ")[0].equals(u.getUsername())) {
+					tr.isLikedBy(u);
+					break; // only breaks from inner loop
+				}
+			}
+		}
+		
+		return tr;
+	}
+	
 }
