@@ -110,11 +110,17 @@ public class Transmission {
 		for (int i = 0; i < fbarray.length; i++) {
 			appreciators[i] = (User) fbarray[i];
 		}
-		
-		String app = appreciators[0].toString();
-		for (int i = 1; i < appreciators.length; i++) {
-			app += "," + appreciators[i].toString();
-		} 
+
+        String app = "";
+
+        if (fbarray.length == 0) {
+            app = "null";
+        } else {
+            app = appreciators[0].toString();
+            for (int i = 1; i < appreciators.length; i++) {
+                app += "," + appreciators[i].toString();
+            }
+        }
 		
 		return author.toString()+"\f"+message+"\f"+
 			Boolean.toString(visible)+"\f"+app+"\f"+timeCreated.toString();
