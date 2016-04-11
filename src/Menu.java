@@ -138,7 +138,7 @@ public class Menu {
     }
     
     public void modifySettings(User currentUser, Scanner in, String DisplayName, 
-            String Password, Boolean Photo) {
+            String Password, String Photo) {
             
                 System.out.println("Select a setting to Modify: Change Display "
                         + "Name.  Change Password.  Change Photo");
@@ -158,6 +158,8 @@ public class Menu {
                          break;
                      
                      case "Change Photo":
+                         System.out.println("Enter new Photo");
+                         Photo = in.next();
                          break;
                          
                      
