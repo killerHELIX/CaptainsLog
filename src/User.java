@@ -94,7 +94,11 @@ public class User extends Menu {
 	public boolean isPasswordMatched (String in) {
         return (in.equals(this.password));
     }
-	
+
+	public void setPassword(String in){
+
+        this.password = in;
+    }
 	@Override
 	public String toString() {
 		return username + " (" + displayName + ")";
