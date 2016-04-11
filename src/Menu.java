@@ -6,6 +6,7 @@
  */
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -45,10 +46,6 @@ public class Menu {
 
                 System.out.println("found user: " + u.getUsername());
                 return u;               
-            }
-            else {
-                System.out.println("The user in which you have entered cannot be found.");
-                return null;
             }
         }
 		return null;
@@ -122,54 +119,96 @@ public class Menu {
     
     public boolean logout(Scanner y) {
 		
-                System.out.println("Are you sure you want to logout?");
+                System.out.println("Are you sure you want to logout? (yes/no) ");
                 String inp = y.next();
                     
                     if (inp.equals("yes")) {
                         
-                        System.out.println("Logout was successful");
+                        System.out.println("Logout successful.  See you, space cowboy.");
                         return true;
                     } else if (inp.equals("no")) {
                     
-                        System.out.println("Continue browsing through CaptainsLog");
+                        System.out.println("Returning to main menu.");
                         return false;
                     }
                 return false;             
     }
     
-    public void modifySettings(User currentUser, Scanner in, String DisplayName, 
-            String Password, String Photo) {
-            
-                System.out.println("Select a setting to Modify: Change Display "
-                        + "Name.  Change Password.  Change Photo");
-                switch(in.next())
-                {
-                     case "Change Display Name":
-                         System.out.println("What would you like your new Display"
-                                 + "Name to be?");
-                         DisplayName = in.next();
-                         System.out.println("Your new display name is " + DisplayName);
+    public void modifySettings(User currentUser, Scanner in) {
+
+                System.out.println("You have access to the following commands: \n" +
+                        "changeDisplayname \t changePassword \t changePhoto \n" +
+                        "currentInfo \n" +
+                        "Which one do you want to change? ");
+
+                switch(in.next()) {
+
+                    case "currentInfo":
+
+                        System.out.println(currentUser.getUsername());
+                        System.out.println(currentUser.getDisplayName());
+                        System.out.println(currentUser.getPhoto());
+                        System.out.println(currentUser.getFollowers());
+                        System.out.println(currentUser.getFollowing());
+                        System.out.println(currentUser.getHistory());
+
+                        break;
+
+
+                    case "displayname":
+
+                         System.out.println("Current display name: " + currentUser.getDisplayName());
+                         System.out.println("Enter the display name you want: ");
+                         currentUser.setDisplayName(in.next());
+                         System.out.println("Your new display name is " + currentUser.getDisplayName());
+
                          break;
-                         
-                     case "Change Password":
-                         System.out.println("Enter new password");
-                         Password = in.next();
-                        
+
+                    case "password":
+
+                         System.out.println("Enter your current password: ");
+                         String oldPass = in.next();
+
+                         if (currentUser.isPasswordMatched(oldPass)){
+
+                             System.out.println("Password successfully matched.");
+                             System.out.println("Enter your new password: ");
+                             String newPass = in.next();
+
+                             System.out.println("Re-enter your new password: ");
+                             String confirm = in.next();
+
+                             if (newPass.equals(confirm)){
+
+                                 currentUser.setPassword(confirm);
+                                 System.out.println("New password accepted.");
+
+                             } else {
+                                 System.out.println("New password does not match in both cases!");
+                             }
+                         }
+
                          break;
                      
-                     case "Change Photo":
+                    case "photo":
+                         System.out.println("Enter the filepath for a new ASCII photo: ");
+                         String filepath = in.next();
+                         try {
+                             String[] newPhoto = IO.getASCIIArt(filepath, true);
+
+                         } catch (IOException ex) {
+
+                             System.err.println(ex);
+                         }
+
                          System.out.println("Enter new Photo");
-                         Photo = in.next();
                          break;
-                         
-                     
+
+                    default:
+
+                        System.out.println("Command not recognized.");
+                        break;
                 }
-                
-                
-                
-       
-       
-		// TODO
     }
 
     private ArrayList<Transmission> getVisibleTransmissions(User currentUser,
