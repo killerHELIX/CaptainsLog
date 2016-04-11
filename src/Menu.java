@@ -137,7 +137,36 @@ public class Menu {
                 return false;             
     }
     
-    public void modifySettings(User currentUser) {
+    public void modifySettings(User currentUser, Scanner in, String DisplayName, 
+            String Password, Boolean Photo) {
+            
+                System.out.println("Select a setting to Modify: Change Display "
+                        + "Name.  Change Password.  Change Photo");
+                switch(in.next())
+                {
+                     case "Change Display Name":
+                         System.out.println("What would you like your new Display"
+                                 + "Name to be?");
+                         DisplayName = in.next();
+                         System.out.println("Your new display name is " + DisplayName);
+                         break;
+                         
+                     case "Change Password":
+                         System.out.println("Enter new password");
+                         Password = in.next();
+                        
+                         break;
+                     
+                     case "Change Photo":
+                         break;
+                         
+                     
+                }
+                
+                
+                
+       
+       
 		// TODO
     }
 
