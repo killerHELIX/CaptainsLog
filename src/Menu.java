@@ -147,17 +147,17 @@ public class Menu {
 
                     case "currentInfo":
 
-                        System.out.println(currentUser.getUsername());
-                        System.out.println(currentUser.getDisplayName());
-                        System.out.println(currentUser.getPhoto());
-                        System.out.println(currentUser.getFollowers());
-                        System.out.println(currentUser.getFollowing());
-                        System.out.println(currentUser.getHistory());
+                        System.out.println("Username: " + currentUser.getUsername());
+                        System.out.println("Display name: " + currentUser.getDisplayName());
+                        System.out.println("Photo: " + currentUser.getPhoto());
+                        System.out.println("Followers: " + currentUser.getFollowers());
+                        System.out.println("Users Following: " + currentUser.getFollowing());
+                        System.out.println("History: " + currentUser.getHistory());
 
                         break;
 
 
-                    case "displayname":
+                    case "changeDisplayname":
 
                          System.out.println("Current display name: " + currentUser.getDisplayName());
                          System.out.println("Enter the display name you want: ");
@@ -166,7 +166,7 @@ public class Menu {
 
                          break;
 
-                    case "password":
+                    case "changePassword":
 
                          System.out.println("Enter your current password: ");
                          String oldPass = in.next();
@@ -192,7 +192,7 @@ public class Menu {
 
                          break;
                      
-                    case "photo":
+                    case "changePhoto":
                          System.out.println("Enter the filepath for a new ASCII photo: ");
                          String filepath = in.next();
                          try {
