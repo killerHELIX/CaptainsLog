@@ -99,4 +99,23 @@ public class User extends Menu {
 	public String toString() {
 		return username + " (" + displayName + ")";
 	}
+	
+	public String toRecord() throws IndexOutOfBoundsException {
+		String followers = "", subscriptions = "";
+		followers = this.followers.get(0).getUsername();
+		for (int i = 1; i < this.followers.size(); i++) {
+			followers += "," + this.followers.get(i).getUsername();
+		}
+		
+		subsriptions = this.following.get(0).getUsername();
+		for (int i = 1; i < this.following.size(); i++) {
+			subscriptions += "," + this.following.get(i).getUsername();
+		}
+		
+		return ""; // XXX
+	}
+	
+	public Author fromRecord(String record) {
+		
+	}
 }
