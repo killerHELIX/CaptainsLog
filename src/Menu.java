@@ -42,7 +42,6 @@ public class Menu {
         for (User u : masterUserList){
             
             if (u.getUsername().equals(nm)){
-
                 System.out.println("found user: " + u.getUsername());
                 return u;               
             }
