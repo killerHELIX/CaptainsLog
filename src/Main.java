@@ -63,7 +63,7 @@ public class Main {
 
         while (isInMenu && isLoggedIn){
 
-            System.out.println("You have the following choices available: ");
+            System.out.println("You have access to the following commands: ");
             System.out.print("sortByTime \t\t sortByPopularity \n" +
                     "searchForUser \t searchForTransmission \t searchByHashtag \n" +
                     "modifySettings \t logout \n");
@@ -108,7 +108,7 @@ public class Main {
                     break;
 
                 case "logout":
-                    // TODO
+
                     if (menu.logout(in)){
                         currentUser = null;
 
@@ -122,7 +122,8 @@ public class Main {
                     break;
 
                 case "modifySettings":
-                    // TODO
+
+                    menu.modifySettings(currentUser, in);
 
                     break;
 
