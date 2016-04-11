@@ -57,11 +57,12 @@ public class IO {
 	public static void saveTransmissions(String filename,
 		ArrayList<Transmission> transmissions) throws FileNotFoundException,
 		UnsupportedEncodingException {
-		PrintWriter tout = new PrintWriter(filename, "UTF-8");
-		for (Transmission t : transmissions) {
-			tout.println(t.toRecord());
+		try (PrintWriter tout = new PrintWriter(filename, "UTF-8")) {
+			for (Transmission t : transmissions) {
+				tout.println(t.toRecord());
+			}
+			tout.close();
 		}
-		tout.close();
 	}
 	
 	public static ArrayList<Transmission>
