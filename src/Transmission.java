@@ -20,8 +20,9 @@ public class Transmission {
     /** Constructor for Transmission.
      *
      * @param message the content of the transmission
-     * @param target the targets meant to receive the transmission
      * @param author the User who created the transmission
+     * @param isPrivate if the transmission can only be seen by @targets
+     * @param userList the master user list
      */
 
     public Transmission (String message, User author, boolean isPrivate,
