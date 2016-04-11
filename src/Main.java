@@ -16,6 +16,8 @@ public class Main {
         Menu menu = new Menu();
         User currentUser = new User();
         User searchedUser = new User();
+        ArrayList<User> masterUserList = new ArrayList<>();
+        ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
 
         User user = new User ("username", "displayname", "password");
         User user2 = new User ("username2", "displayname2", "password2");
@@ -38,7 +40,6 @@ public class Main {
 			user3, true, masterUserList);
 
         ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
-
 
         masterTransmissionList.add(t1);
         masterTransmissionList.add(t2);
@@ -80,7 +81,7 @@ public class Main {
 
                 case "searchForUser":
                     menu.searchForUser(masterUserList, in);
-
+                    Main.sleep(500);
                     break;
 
                 case "searchForTransmission":

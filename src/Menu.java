@@ -44,8 +44,11 @@ public class Menu {
             if (u.getUsername().equals(nm)){
 
                 System.out.println("found user: " + u.getUsername());
-                return u;
-                
+                return u;               
+            }
+            else {
+                System.out.println("The user in which you have entered cannot be found.");
+                return null;
             }
         }
 		return null;
@@ -82,6 +85,10 @@ public class Menu {
                 
                 System.out.println(h.getAuthor().getDisplayName() + " composed a transmission with your entered hashtag, and their transmission stated: " + h.getMessage());
             }     
+            else {
+                System.out.println("The hashtag that you have entered: " + hashtag + " has not been used by any other users within CaptainsLog.");
+                System.exit(0);
+            }
         }
     }
     
