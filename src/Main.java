@@ -83,7 +83,8 @@ public class Main {
                     break;
 
                 case "searchForTransmission":
-                    // TODO
+                    System.out.println("Enter what you'd like to search for: ");
+                    menu.searchForTransmission(in.next(), currentUser, masterTransmissionList);
 
                     break;
 
