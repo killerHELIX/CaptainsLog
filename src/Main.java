@@ -1,3 +1,5 @@
+import java.io.FileNotFoundException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -29,19 +31,21 @@ public class Main {
         
 		user.addFollowing(user2);
         user3.addFollowing(user2);
-        user.addFollowing(user3);
+        user2.addFollowing(user3);
 
-        Transmission t1 = new Transmission("message1 from user to @user2",
-			user, true, masterUserList);
+        masterTransmissionList = IO.loadTransmissions("transmissionsFile", masterUserList);
+
+/*        Transmission t1 = new Transmission("message1 from user to @user2",
+                user, true, masterUserList);
         Transmission t2 = new Transmission("message2 from user2 to @user3",
-			user2, true, masterUserList);
+                user2, true, masterUserList);
         Transmission t3 = new Transmission("message3 from user3 to @user",
-			user3, true, masterUserList);
+                user3, true, masterUserList);
 
 
         masterTransmissionList.add(t1);
         masterTransmissionList.add(t2);
-        masterTransmissionList.add(t3);
+        masterTransmissionList.add(t3);*/
 
         boolean isInMenu = true;
         boolean isLoggedIn = false;
@@ -66,6 +70,16 @@ public class Main {
 
             System.out.println("Enter your choice: ");
             switch(in.next()){
+
+                case "test":
+
+                    for (Transmission t : masterTransmissionList){
+
+                        System.out.println(t.getMessage());
+
+                    }
+
+                    break;
 
                 case "sortByTime":
                     menu.sortByTime(currentUser, masterTransmissionList);
@@ -98,6 +112,11 @@ public class Main {
                     if (menu.logout(in)){
                         currentUser = null;
 
+                        try {
+                            IO.saveTransmissions("transmissionsFile", masterTransmissionList);
+                        } catch (FileNotFoundException|UnsupportedEncodingException ex){
+                            System.err.println("Exception: " + ex);
+                        }
                         System.exit(0);
                     }
                     break;
