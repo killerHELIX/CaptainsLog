@@ -74,7 +74,7 @@ public class Menu {
 		return null; // added null return for compilation
     }
 	
-    public void searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
+    public boolean searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
 		
         System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
         String hashtag = t.next();
@@ -84,12 +84,15 @@ public class Menu {
             if (h.getMessage().contains(hashtag)){
                 
                 System.out.println(h.getAuthor().getDisplayName() + " composed a transmission with your entered hashtag, and their transmission stated: " + h.getMessage());
+                return true;
             }     
             else {
+                
                 System.out.println("The hashtag that you have entered: " + hashtag + " has not been used by any other users within CaptainsLog.");
-                System.exit(0);
+                return false;
             }
         }
+                return false;
     }
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
