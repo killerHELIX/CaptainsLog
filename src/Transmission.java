@@ -57,7 +57,6 @@ public class Transmission {
 		favoritedBy = new ArrayList<>(0);
         this.author = author;
         this.timeCreated = LocalDateTime.now();
-        author.addToHistory(this);
     }
 
     public User getAuthor(){

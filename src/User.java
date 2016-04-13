@@ -7,16 +7,22 @@ public class User extends Menu {
 	private String displayName;
 	private String[] photo;
 	private ArrayList<User> blacklist;
+	private String[] blacklistLoad;
 	private ArrayList<User> followers;
+	private String[] followersLoad;
 	private ArrayList<User> following;
+	private String[] followingLoad;
 	private String password;
 
     public User() {
-        history = new ArrayList<>();
         blacklist = new ArrayList<>();
         followers = new ArrayList<>();
         following = new ArrayList<>();
-
+		
+		blacklistLoad = null;
+		followersLoad = null;
+		followingLoad = null;
+		
         photo = null;
         username = "";
         displayName = "";
@@ -25,7 +31,6 @@ public class User extends Menu {
     }
 	
 	public User (String usrnm, String dspnm, String passwd) {
-		history = new ArrayList<>();
 		blacklist = new ArrayList<>();
 		followers = new ArrayList<>();
 		following = new ArrayList<>();
@@ -60,6 +65,10 @@ public class User extends Menu {
 			photo = null;
 		}
 	}
+	
+	public void setPhoto(String[] photo) {
+		this.photo = photo;
+	}
 		
 	public ArrayList<User> getFollowers() {
 		return followers;
@@ -86,6 +95,10 @@ public class User extends Menu {
         return (in.equals(this.password));
     }
 	
+	public boolean equals(User u) {
+		return this.getUsername() == u.getUsername();
+	}
+	
 	@Override
 	public String toString() {
 		return username + " (" + displayName + ")";
@@ -103,7 +116,7 @@ public class User extends Menu {
 			}
 		}
 		
-		if (this.follwing.size() != 0) {
+		if (this.following.size() != 0) {
 			subscriptions = this.following.get(0).getUsername();
 			for (int i = 1; i < this.following.size(); i++) {
 				subscriptions += "," + this.following.get(i).getUsername();
@@ -117,7 +130,7 @@ public class User extends Menu {
 		if (blacklist.size() > 0) {
 			blacklisted = "";
 			for (int i = 0; i < blacklist.size(); i++) {
-				blacklisted += blacklist[i].getUsername();
+				blacklisted += blacklist.get(i).getUsername();
 				if (i < blacklist.size() - 1) {
 					blacklisted += ",";
 				}
@@ -129,18 +142,66 @@ public class User extends Menu {
 			"\f" + this.password;
 	}
 	
-	public Author fromRecord(String record) {
+	public static User fromRecord(String record) {
+		String[] fields = record.split("\f");
+		String[] photo = fields[2].split(",");
+		String[] blacklisted = fields[3].split(",");
+		String[] followers = fields[4].split(",");
+		String[] following = fields[5].split(",");
+		
+		User usr = new User(fields[0], fields[1], fields[6]);
+		if (!photo[0].equals("null")) {
+			usr.setPhoto(photo);
+		}
+		usr.setUserLists(blacklisted, followers, following);
+		return usr;
+	}
+	
+	private void setUserLists(String[] blacklisted, String[] followers,
+		String[] following) {
+		if (!blacklisted[0].equals("null")) {
+			this.blacklistLoad = blacklisted;
+		}
+		if (!followers[0].equals("null")) {
+			this.followersLoad = followers;
+		}
+		if (!following[0].equals("null")) {
+			this.followingLoad = following;
+		}
+	}
+	
+	// call this in main() for each user in the master user list
+	public void loadUserLists(ArrayList<User> userList) {
+		if (blacklistLoad != null) {
+			for (String s : blacklistLoad) {
+				for (User u : userList) {
+					if (u.getUsername().equals(s)) {
+						this.blacklist.add(u);
+					}
+				}
+			}
+		}
+		
+		if (followersLoad != null) {
+			for (String s : followersLoad) {
+				for (User u : userList) {
+					if (u.getUsername().equals(s)) {
+						this.followers.add(u);
+					}
+				}
+			}
+		}
+		
+		if (followingLoad != null) {
+			for (String s: followingLoad) {
+				for (User u : userList) {
+					if (u.getUsername().equals(s)) {
+						this.following.add(u);
+					}
+				}
+			}
+		}
 		
 	}
 	
-/*
-	private String username;
-	private String displayName;
-	private String[] photo;
-	private ArrayList<Transmission> history;
-	private ArrayList<User> blacklist;
-	private ArrayList<User> followers;
-	private ArrayList<User> following;
-	private String password;
-*/
 }

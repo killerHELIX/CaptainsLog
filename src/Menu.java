@@ -148,9 +148,10 @@ public class Menu {
 
         for (User u : currentUser.getFollowing()){
 
-            for (Transmission t : u.getHistory()){
-
-                visibleTransmissions.add(t);
+            for (Transmission t : masterTransmissionList){
+				if (t.getAuthor().equals(u)) {
+                	visibleTransmissions.add(t);
+				}
             }
         }
 
