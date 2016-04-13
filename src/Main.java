@@ -35,17 +35,17 @@ public class Main {
 
         masterTransmissionList = IO.loadTransmissions("transmissionsFile", masterUserList);
 
-/*        Transmission t1 = new Transmission("message1 from user to @user2",
+        Transmission t1 = new Transmission("message1 from user to @user2 #fun",
                 user, true, masterUserList);
-        Transmission t2 = new Transmission("message2 from user2 to @user3",
+        Transmission t2 = new Transmission("message2 from user2 to @user3 #bikes",
                 user2, true, masterUserList);
-        Transmission t3 = new Transmission("message3 from user3 to @user",
+        Transmission t3 = new Transmission("message3 from user3 to @user #sand",
                 user3, true, masterUserList); 
 
 
         masterTransmissionList.add(t1);
         masterTransmissionList.add(t2);
-        masterTransmissionList.add(t3); */
+        masterTransmissionList.add(t3); 
 
         boolean isInMenu = true;
         boolean isLoggedIn = false;
