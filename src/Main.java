@@ -157,6 +157,7 @@ public class Main {
 
                 case "searchByHashtag":
                     menu.searchByHashtag(masterTransmissionList, in);
+                    Main.sleep(500);
                     break;
 
                 case "logout":
