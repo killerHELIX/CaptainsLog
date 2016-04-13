@@ -36,7 +36,7 @@ public class Main {
 
         masterTransmissionList = IO.loadTransmissions("transmissionsFile", masterUserList);
 
-        Transmission t1 = new Transmission("message1 from user to @user2 #fun",
+ /*       Transmission t1 = new Transmission("message1 from user to @user2 #fun",
                 user, true, masterUserList);
         Transmission t2 = new Transmission("message2 from user2 to @user3 #bikes",
                 user2, true, masterUserList);
@@ -46,7 +46,7 @@ public class Main {
 
         masterTransmissionList.add(t1);
         masterTransmissionList.add(t2);
-        masterTransmissionList.add(t3); 
+        masterTransmissionList.add(t3);*/
 
         boolean isInMenu = true;
         boolean isLoggedIn = false;
@@ -81,6 +81,7 @@ public class Main {
 
                     }
 
+                    Main.sleep(500);
                     break;
 
                 case "compose":
@@ -90,6 +91,7 @@ public class Main {
 
                     masterTransmissionList.add(new Transmission(input, currentUser, true, masterUserList));
 
+                    Main.sleep(500);
                     break;
 
                 case "delete":
@@ -132,6 +134,7 @@ public class Main {
                         System.out.println("Cancelling deletion.  Returning to main menu.");
                     }
 
+                    Main.sleep(500);
                     break;
 
                 case "sortByTime":
@@ -153,10 +156,12 @@ public class Main {
                     System.out.println("Enter what you'd like to search for: ");
                     menu.searchForTransmission(in.next(), currentUser, masterTransmissionList);
 
+                    Main.sleep(500);
                     break;
 
                 case "searchByHashtag":
                     menu.searchByHashtag(masterTransmissionList, in);
+
                     Main.sleep(500);
                     break;
 
@@ -178,6 +183,7 @@ public class Main {
 
                     menu.modifySettings(currentUser, in);
 
+                    Main.sleep(500);
                     break;
 
                 default:
