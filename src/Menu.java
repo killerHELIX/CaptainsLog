@@ -39,7 +39,7 @@ public class Menu {
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
         System.out.println("Please enter the username of the user that you would like to search for: ");
-        String nm = t.next();
+        String nm = t.nextLine();
             
         for (User u : masterUserList){
             
@@ -74,7 +74,7 @@ public class Menu {
     public boolean searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
 		
         System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
-        String hashtag = t.next();
+        String hashtag = t.nextLine();
         
         for (Transmission h : masterTransmissionList) {
             
@@ -95,14 +95,14 @@ public class Menu {
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
         System.out.println("Welcome.  Enter your username: ");
-        String input = y.next();
+        String input = y.nextLine();
 
         for (User u : masterUserList){
 
             if (u.getUsername().equals(input)){
 
                 System.out.println("User successfully found.  Enter your password: ");
-                input = y.next();
+                input = y.nextLine();
 
                 if (u.isPasswordMatched(input)){
 
@@ -123,7 +123,7 @@ public class Menu {
     public boolean logout(Scanner y) {
 		
                 System.out.println("Are you sure you want to logout? (yes/no) ");
-                String inp = y.next();
+                String inp = y.nextLine();
                     
                     if (inp.equals("yes")) {
                         
@@ -144,7 +144,7 @@ public class Menu {
                         "currentInfo \n" +
                         "Which one do you want to change? ");
 
-                switch(in.next()) {
+                switch(in.nextLine()) {
 
                     case "currentInfo":
 
@@ -162,7 +162,7 @@ public class Menu {
 
                          System.out.println("Current display name: " + currentUser.getDisplayName());
                          System.out.println("Enter the display name you want: ");
-                         currentUser.setDisplayName(in.next());
+                         currentUser.setDisplayName(in.nextLine());
                          System.out.println("Your new display name is " + currentUser.getDisplayName());
 
                          break;
@@ -170,16 +170,16 @@ public class Menu {
                     case "changePassword":
 
                          System.out.println("Enter your current password: ");
-                         String oldPass = in.next();
+                         String oldPass = in.nextLine();
 
                          if (currentUser.isPasswordMatched(oldPass)){
 
                              System.out.println("Password successfully matched.");
                              System.out.println("Enter your new password: ");
-                             String newPass = in.next();
+                             String newPass = in.nextLine();
 
                              System.out.println("Re-enter your new password: ");
-                             String confirm = in.next();
+                             String confirm = in.nextLine();
 
                              if (newPass.equals(confirm)){
 
@@ -195,7 +195,7 @@ public class Menu {
                      
                     case "changePhoto":
                          System.out.println("Enter the filepath for a new ASCII photo: ");
-                         String filepath = in.next();
+                         String filepath = in.nextLine();
                          try {
                              String[] newPhoto = IO.getASCIIArt(filepath, true);
 
