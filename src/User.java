@@ -99,6 +99,11 @@ public class User extends Menu {
 		return this.getUsername() == u.getUsername();
 	}
 	
+	public void setPassword(String in){
+
+        this.password = in;
+    }
+
 	@Override
 	public String toString() {
 		return username + " (" + displayName + ")";

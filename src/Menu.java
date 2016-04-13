@@ -6,6 +6,7 @@
  */
 
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
@@ -19,7 +20,8 @@ public class Menu {
         Collections.sort(visibleTransmissions, new TCompByPopularity());
 
         for (Transmission t : visibleTransmissions){
-            System.out.println(t.getMessage());
+
+            System.out.printf("%s (%s): %s %n", t.getAuthor().getDisplayName(), t.getTimestamp(), t.getMessage());
         }
     }
 
@@ -37,18 +39,13 @@ public class Menu {
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
         System.out.println("Please enter the username of the user that you would like to search for: ");
-        String nm = t.next();
+        String nm = t.nextLine();
             
         for (User u : masterUserList){
             
             if (u.getUsername().equals(nm)){
-
                 System.out.println("found user: " + u.getUsername());
                 return u;               
-            }
-            else {
-                System.out.println("The user in which you have entered cannot be found.");
-                return null;
             }
         }
 		return null;
@@ -74,35 +71,38 @@ public class Menu {
 		return null; // added null return for compilation
     }
 	
-    public void searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
+    public boolean searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
 		
         System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
-        String hashtag = t.next();
+        String hashtag = t.nextLine();
         
         for (Transmission h : masterTransmissionList) {
             
             if (h.getMessage().contains(hashtag)){
                 
                 System.out.println(h.getAuthor().getDisplayName() + " composed a transmission with your entered hashtag, and their transmission stated: " + h.getMessage());
+                return true;
             }     
             else {
+                
                 System.out.println("The hashtag that you have entered: " + hashtag + " has not been used by any other users within CaptainsLog.");
-                System.exit(0);
+                return false;
             }
         }
+                return false;
     }
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
         System.out.println("Welcome.  Enter your username: ");
-        String input = y.next();
+        String input = y.nextLine();
 
         for (User u : masterUserList){
 
             if (u.getUsername().equals(input)){
 
                 System.out.println("User successfully found.  Enter your password: ");
-                input = y.next();
+                input = y.nextLine();
 
                 if (u.isPasswordMatched(input)){
 
@@ -122,23 +122,96 @@ public class Menu {
     
     public boolean logout(Scanner y) {
 		
-                System.out.println("Are you sure you want to logout?");
-                String inp = y.next();
+                System.out.println("Are you sure you want to logout? (yes/no) ");
+                String inp = y.nextLine();
                     
                     if (inp.equals("yes")) {
                         
-                        System.out.println("Logout was successful");
+                        System.out.println("Logout successful.  See you, space cowboy.");
                         return true;
                     } else if (inp.equals("no")) {
                     
-                        System.out.println("Continue browsing through CaptainsLog");
+                        System.out.println("Returning to main menu.");
                         return false;
                     }
                 return false;             
     }
     
-    public void modifySettings(User currentUser) {
-		// TODO
+    public void modifySettings(User currentUser, Scanner in) {
+
+                System.out.println("You have access to the following commands: \n" +
+                        "changeDisplayname \t changePassword \t changePhoto \n" +
+                        "currentInfo \n" +
+                        "Which one do you want to change? ");
+
+                switch(in.nextLine()) {
+
+                    case "currentInfo":
+
+                        System.out.println("Username: " + currentUser.getUsername());
+                        System.out.println("Display name: " + currentUser.getDisplayName());
+                        System.out.println("Photo: " + currentUser.getPhoto());
+                        System.out.println("Followers: " + currentUser.getFollowers());
+                        System.out.println("Users Following: " + currentUser.getFollowing());
+                        System.out.println("History: " + currentUser.getHistory());
+
+                        break;
+
+
+                    case "changeDisplayname":
+
+                         System.out.println("Current display name: " + currentUser.getDisplayName());
+                         System.out.println("Enter the display name you want: ");
+                         currentUser.setDisplayName(in.nextLine());
+                         System.out.println("Your new display name is " + currentUser.getDisplayName());
+
+                         break;
+
+                    case "changePassword":
+
+                         System.out.println("Enter your current password: ");
+                         String oldPass = in.nextLine();
+
+                         if (currentUser.isPasswordMatched(oldPass)){
+
+                             System.out.println("Password successfully matched.");
+                             System.out.println("Enter your new password: ");
+                             String newPass = in.nextLine();
+
+                             System.out.println("Re-enter your new password: ");
+                             String confirm = in.nextLine();
+
+                             if (newPass.equals(confirm)){
+
+                                 currentUser.setPassword(confirm);
+                                 System.out.println("New password accepted.");
+
+                             } else {
+                                 System.out.println("New password does not match in both cases!");
+                             }
+                         }
+
+                         break;
+                     
+                    case "changePhoto":
+                         System.out.println("Enter the filepath for a new ASCII photo: ");
+                         String filepath = in.nextLine();
+                         try {
+                             String[] newPhoto = IO.getASCIIArt(filepath, true);
+
+                         } catch (IOException ex) {
+
+                             System.err.println(ex);
+                         }
+
+                         System.out.println("Enter new Photo");
+                         break;
+
+                    default:
+
+                        System.out.println("Command not recognized.");
+                        break;
+                }
     }
 
     private ArrayList<Transmission> getVisibleTransmissions(User currentUser,

@@ -1,0 +1,10 @@
+username (displayname)message1 from user to @user2truenull2016-04-11T11:05:49.452
+username2 (displayname2)message2 from user2 to @user3truenull2016-04-11T11:05:49.519
+username3 (displayname3)message3 from user3 to @usertruenull2016-04-11T11:05:49.519
+username (displayname)message1 from user to @user2 #funtruenull2016-04-13T11:21:02.801
+username2 (displayname2)message2 from user2 to @user3 #bikestruenull2016-04-13T11:21:02.801
+username3 (displayname3)message3 from user3 to @user #sandtruenull2016-04-13T11:21:02.801
+username (displayname)Yoooooo... #funtruenull2016-04-13T11:21:17.515
+username (displayname)message1 from user to @user2 #funfalsenull2016-04-13T11:21:27.636
+username2 (displayname2)message2 from user2 to @user3 #bikesfalsenull2016-04-13T11:21:27.636
+username3 (displayname3)message3 from user3 to @user #sandfalsenull2016-04-13T11:21:27.636

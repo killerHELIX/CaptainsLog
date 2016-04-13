@@ -20,8 +20,9 @@ public class Transmission {
     /** Constructor for Transmission.
      *
      * @param message the content of the transmission
-     * @param target the targets meant to receive the transmission
      * @param author the User who created the transmission
+     * @param isPrivate if the transmission can only be seen by @targets
+     * @param userList the master user list
      */
 
     public Transmission (String message, User author, boolean isPrivate,
@@ -108,11 +109,17 @@ public class Transmission {
 		for (int i = 0; i < fbarray.length; i++) {
 			appreciators[i] = (User) fbarray[i];
 		}
-		
-		String app = appreciators[0].toString();
-		for (int i = 1; i < appreciators.length; i++) {
-			app += "," + appreciators[i].toString();
-		} 
+
+        String app = "";
+
+        if (fbarray.length == 0) {
+            app = "null";
+        } else {
+            app = appreciators[0].toString();
+            for (int i = 1; i < appreciators.length; i++) {
+                app += "," + appreciators[i].toString();
+            }
+        }
 		
 		return author.toString()+"\f"+message+"\f"+
 			Boolean.toString(visible)+"\f"+app+"\f"+timeCreated.toString();
