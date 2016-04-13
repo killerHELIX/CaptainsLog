@@ -20,7 +20,8 @@ public class Menu {
         Collections.sort(visibleTransmissions, new TCompByPopularity());
 
         for (Transmission t : visibleTransmissions){
-            System.out.println(t.getMessage());
+
+            System.out.printf("%s (%s): %s %n", t.getAuthor().getDisplayName(), t.getTimestamp(), t.getMessage());
         }
     }
 
