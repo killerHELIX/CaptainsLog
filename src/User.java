@@ -6,7 +6,6 @@ public class User extends Menu {
 	private String username;
 	private String displayName;
 	private String[] photo;
-	private ArrayList<Transmission> history;
 	private ArrayList<User> blacklist;
 	private ArrayList<User> followers;
 	private ArrayList<User> following;
@@ -62,14 +61,6 @@ public class User extends Menu {
 		}
 	}
 		
-	public ArrayList<Transmission> getHistory() {
-		return history;
-	}
-		
-	public void addToHistory(Transmission tr) {
-		history.add(tr);
-	}
-		
 	public ArrayList<User> getFollowers() {
 		return followers;
 	}
@@ -101,21 +92,55 @@ public class User extends Menu {
 	}
 	
 	public String toRecord() throws IndexOutOfBoundsException {
-		String followers = "", subscriptions = "";
-		followers = this.followers.get(0).getUsername();
-		for (int i = 1; i < this.followers.size(); i++) {
-			followers += "," + this.followers.get(i).getUsername();
+		String followers = "null", subscriptions = "null";
+		String photo = "null";
+		String blacklisted = "null";
+		
+		if (this.followers.size() != 0) {
+			followers = this.followers.get(0).getUsername();
+			for (int i = 1; i < this.followers.size(); i++) {
+				followers += "," + this.followers.get(i).getUsername();
+			}
 		}
 		
-		subsriptions = this.following.get(0).getUsername();
-		for (int i = 1; i < this.following.size(); i++) {
-			subscriptions += "," + this.following.get(i).getUsername();
+		if (this.follwing.size() != 0) {
+			subscriptions = this.following.get(0).getUsername();
+			for (int i = 1; i < this.following.size(); i++) {
+				subscriptions += "," + this.following.get(i).getUsername();
+			}
 		}
 		
-		return ""; // XXX
+		if (photo != null) {
+			photo = String.join(",", this.photo);
+		}
+		
+		if (blacklist.size() > 0) {
+			blacklisted = "";
+			for (int i = 0; i < blacklist.size(); i++) {
+				blacklisted += blacklist[i].getUsername();
+				if (i < blacklist.size() - 1) {
+					blacklisted += ",";
+				}
+			}
+		}
+		
+		return this.username + "\f" + this.displayName + "\f" + photo +
+			"\f" + blacklisted + "\f" + followers + "\f" + subscriptions +
+			"\f" + this.password;
 	}
 	
 	public Author fromRecord(String record) {
 		
 	}
+	
+/*
+	private String username;
+	private String displayName;
+	private String[] photo;
+	private ArrayList<Transmission> history;
+	private ArrayList<User> blacklist;
+	private ArrayList<User> followers;
+	private ArrayList<User> following;
+	private String password;
+*/
 }
