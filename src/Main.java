@@ -64,7 +64,8 @@ public class Main {
         while (isInMenu && isLoggedIn){
 
             System.out.println("You have access to the following commands: ");
-            System.out.print("sortByTime \t\t sortByPopularity \n" +
+            System.out.print("compose \n" +
+                    "sortByTime \t\t sortByPopularity \n" +
                     "searchForUser \t searchForTransmission \t searchByHashtag \n" +
                     "modifySettings \t logout \n");
 
@@ -78,6 +79,10 @@ public class Main {
                         System.out.println(t.getMessage());
 
                     }
+
+                    break;
+
+                case "compose":
 
                     break;
 
