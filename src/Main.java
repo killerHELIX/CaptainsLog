@@ -139,7 +139,75 @@ public class Main {
                     break;
 
                 case "searchForUser":
-                    menu.searchForUser(masterUserList, in);
+                    searchedUser = menu.searchForUser(masterUserList, in);
+
+                    System.out.println("What would you like to do? You have the following options: ");
+                    System.out.print("follow \t unfollow \t block \t unblock \n" +
+                            "viewHistory \n \n");
+
+                    switch(in.nextLine()){
+
+                        case "follow":
+
+                            if (!currentUser.getFollowing().contains(searchedUser)){
+
+                                currentUser.addFollowing(searchedUser);
+
+                            } else {
+
+                                System.out.println("You're already following this user.");
+                            }
+
+                            break;
+
+                        case "unfollow":
+
+                            if (currentUser.getFollowing().contains(searchedUser)){
+
+                                currentUser.removeFollowing(searchedUser);
+                            } else {
+
+                                System.out.println("You're not following this user.");
+                            }
+
+                            break;
+
+                        case "block":
+
+                            if (!currentUser.getBlacklist().contains(searchedUser)){
+
+                                currentUser.addBlacklist(searchedUser);
+
+                            } else {
+
+                                System.out.println("This user is already blocked.");
+                            }
+
+                            break;
+
+                        case "unblock":
+
+                            if (currentUser.getBlacklist().contains(searchedUser)) {
+
+                                currentUser.removeBlacklist(searchedUser);
+                            } else {
+
+                                System.out.println("This user isn't blocked.");
+                            }
+
+                            break;
+
+                        case "viewHistory":
+
+                            break;
+
+                        default:
+
+                            System.out.println("Command not recognized.");
+                            break;
+                    }
+
+
                     Main.sleep(500);
                     break;
 
