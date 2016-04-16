@@ -176,7 +176,7 @@ public class Main {
 
                             if (!currentUser.getBlacklist().contains(searchedUser)){
 
-                                currentUser.addBlacklist(searchedUser);
+                                currentUser.block(searchedUser);
 
                             } else {
 
@@ -189,7 +189,7 @@ public class Main {
 
                             if (currentUser.getBlacklist().contains(searchedUser)) {
 
-                                currentUser.removeBlacklist(searchedUser);
+                                currentUser.unblock(searchedUser);
                             } else {
 
                                 System.out.println("This user isn't blocked.");
@@ -198,6 +198,14 @@ public class Main {
                             break;
 
                         case "viewHistory":
+
+                            for (Transmission t : masterTransmissionList){
+
+                                if (t.getAuthor().equals(searchedUser)){
+
+                                    System.out.printf("%s: %s %n", t.getTimestamp(), t.getMessage());
+                                }
+                            }
 
                             break;
 
