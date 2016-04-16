@@ -89,13 +89,8 @@ public class Menu {
         System.out.print("Enter the hashtag you'd like searched" +
 			" transmissions to contain: #");
         String hashtag = "#" + t.nextLine();
-<<<<<<< HEAD
-=======
-
         // padding
         System.out.println();
-
->>>>>>> 435b6eb5e8b8e61107cbf219c400e0f4c26a91b7
         for (Transmission h : masterTransmissionList) {
             if (h.getHashtags().contains(hashtag)) {
                 System.out.printf("%s (%s): %s %n\n",
@@ -115,11 +110,7 @@ public class Menu {
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
         System.out.print("Welcome.  Enter your username" +
-<<<<<<< HEAD
 			" (or 0 if you're not a user yet)\n> ");
-=======
-			" (or 0 if you're not a user yet): \n> ");
->>>>>>> 435b6eb5e8b8e61107cbf219c400e0f4c26a91b7
         String input = y.nextLine();
 
         for (User u : masterUserList) {
@@ -141,7 +132,6 @@ public class Menu {
             }
         }
 
-<<<<<<< HEAD
         System.out.print("Username not found.  " +
         	"Would you like to register for an account?" +
 			" (yes/no)\n> ");
@@ -159,26 +149,6 @@ public class Menu {
                 System.out.print("Final thing.  Enter your" +
 					" password: \n> ");
                 String password = y.nextLine();
-=======
-            System.out.print("Username not found.  " +
-                    "Would you like to register for an account?" +
-					" (yes/no)\n> ");
-
-            input = y.nextLine();
-            switch(input){
-                case "yes":
-
-                    System.out.print("Good choice.  What do you want" +
-						" your username to be? (IT IS PERMANENT) \n> ");
-                    String username = y.nextLine();
-
-                    System.out.print("What about your display name? \n>");
-                    String displayname = y.nextLine();
-
-                    System.out.print("Final thing.  Enter your" +
-						" password: \n>");
-                    String password = y.nextLine();
->>>>>>> 435b6eb5e8b8e61107cbf219c400e0f4c26a91b7
 
                 User newUser = new User(username, displayname,
 					password);
