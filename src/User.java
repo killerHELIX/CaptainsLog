@@ -82,7 +82,7 @@ public class User extends Menu {
 		followers.remove(fo);
 	}
 	
-	public ArrayList<User> getBlacklist();
+	public ArrayList<User> getBlacklist() {
 		return blacklist;
 	}
 	

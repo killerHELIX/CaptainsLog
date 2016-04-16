@@ -76,7 +76,7 @@ public class Transmission {
 		return favoritedBy.size();
 	}
 	
-    public boolean isPublic(){
+    public boolean isPublic() {
         return visible;
     }
 	
