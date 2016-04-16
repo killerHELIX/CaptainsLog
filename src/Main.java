@@ -176,7 +176,7 @@ public class Main {
 
                             if (!currentUser.getBlacklist().contains(searchedUser)){
 
-                                currentUser.addBlacklist(searchedUser);
+                                currentUser.block(searchedUser);
 
                             } else {
 
@@ -189,7 +189,7 @@ public class Main {
 
                             if (currentUser.getBlacklist().contains(searchedUser)) {
 
-                                currentUser.removeBlacklist(searchedUser);
+                                currentUser.unblock(searchedUser);
                             } else {
 
                                 System.out.println("This user isn't blocked.");
