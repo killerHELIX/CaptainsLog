@@ -43,7 +43,7 @@ public class Menu {
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
         System.out.println("Please enter the username of the user\n" +
-			"that you would like to search for: ");
+			"that you would like to search for: \n>");
         String nm = t.nextLine();
         System.out.println(""); // padding
         for (User u : masterUserList){
@@ -86,6 +86,9 @@ public class Menu {
 			" transmissions to contain: #");
         String hashtag = "#" + t.nextLine();
 
+        // padding
+        System.out.println();
+
         for (Transmission h : masterTransmissionList) {
 
             if (h.getHashtags().contains(hashtag)) {
@@ -106,14 +109,14 @@ public class Menu {
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
         System.out.println("Welcome.  Enter your username" +
-			" (or 0 if you're not a user yet): ");
+			" (or 0 if you're not a user yet): \n> ");
         String input = y.nextLine();
 
         for (User u : masterUserList) {
 
             if (u.getUsername().equals(input)) {
                 System.out.println("User successfully found. " +
-                        " Enter your password: ");
+                        " Enter your password: \n>");
                 input = y.nextLine();
 
                 if (u.isPasswordMatched(input)) {
@@ -137,14 +140,14 @@ public class Menu {
                 case "yes":
 
                     System.out.println("Good choice.  What do you want" +
-						" your username to be? (IT IS PERMANENT) ");
+						" your username to be? (IT IS PERMANENT) \n> ");
                     String username = y.nextLine();
 
-                    System.out.println("What about your display name?");
+                    System.out.println("What about your display name? \n>");
                     String displayname = y.nextLine();
 
                     System.out.println("Final thing.  Enter your" +
-						" password: ");
+						" password: \n>");
                     String password = y.nextLine();
 
                     User newUser = new User(username, displayname,
@@ -170,7 +173,7 @@ public class Menu {
     }
     
     public boolean logout(Scanner y) {
-    	System.out.println("Are you sure you want to log out? (yes/no) ");
+    	System.out.println("Are you sure you want to log out? (yes/no) \n> ");
         String inp = y.nextLine();
         if (inp.equals("yes")) {
 			System.out.println("Logout successful. " +
@@ -221,7 +224,7 @@ public class Menu {
                         System.out.println("Current display name: " +
 						currentUser.getDisplayName());
                         System.out.println("Enter the display name you" +
-							" want: ");
+							" want: \n>");
                         currentUser.setDisplayName(in.nextLine());
                         System.out.println("Your new display name is " +
 						currentUser.getDisplayName());
@@ -230,18 +233,18 @@ public class Menu {
 
                     case "changePassword":
                          System.out.println("Enter your current" +
-							"password: ");
+							"password: \n>");
                          String oldPass = in.nextLine();
                          if (currentUser.isPasswordMatched(oldPass)){
                              System.out.println("Password successfully " +
 								"matched.");
 
                              System.out.println("Enter your new " +
-								"password: ");
+								"password: \n>");
                              String newPass = in.nextLine();
 
                              System.out.println("Re-enter your new " +
-								"password: ");
+								"password: \n>");
                              String confirm = in.nextLine();
 
                              if (newPass.equals(confirm)){
@@ -260,7 +263,7 @@ public class Menu {
                      
                     case "changePhoto":
                         System.out.println("Enter the filepath for " +
-						"a new ASCII photo: ");
+						"a new ASCII photo: \n>");
                         String filepath = in.nextLine();
 
                         currentUser.setPhoto(filepath);
