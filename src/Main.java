@@ -22,7 +22,14 @@ public class Main {
         ArrayList<User> masterUserList = new ArrayList<>();
         ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
 
-        User user = new User ("username", "displayname", "password");
+        // load individual User info
+        masterUserList = IO.loadUsers("usersFile");
+        for (User u : masterUserList){
+            u.loadUserLists(masterUserList);
+        }
+
+
+        /* User user = new User ("username", "displayname", "password");
         User user2 = new User ("username2", "displayname2", "password2");
         User user3 = new User ("username3", "displayname3", "password3");
 		
@@ -32,7 +39,7 @@ public class Main {
         
         user.addFollowing(user2);
         user3.addFollowing(user2);
-        user2.addFollowing(user3);
+        user2.addFollowing(user3);*/
 
         masterTransmissionList = IO.loadTransmissions(
 			"transmissionsFile", masterUserList);
@@ -75,9 +82,24 @@ public class Main {
             switch(in.nextLine()) {
                 case "test":
                     for (Transmission t : masterTransmissionList) {
-                        System.out.printf("[%s] %s %n\n",
-							masterTransmissionList.indexOf(t),
-							t.getMessage());
+
+                        System.out.println(t);
+                    }
+
+                    for (User u : masterUserList) {
+                        System.out.println(u);
+
+                        System.out.println("Following: ");
+                        for (User v : u.getFollowing()){
+                            System.out.println(v);
+                        }
+
+                        System.out.println("Followers: ");
+                        for (User w : u.getFollowers()){
+                            System.out.println(w);
+                        }
+
+                        System.out.println();
                     }
                     Main.sleep(500);
                     break;
@@ -107,7 +129,7 @@ public class Main {
                         }
                     }
 
-                    System.out.println("Enter the index you want to" +
+                    System.out.println("Enter the index you want to " +
 						"delete (-1 to cancel): ");
                     int index = Integer.valueOf(in.nextLine());
 
@@ -233,6 +255,10 @@ public class Main {
                         try {
                             IO.saveTransmissions("transmissionsFile",
 								masterTransmissionList);
+
+                            IO.saveUsers("usersFile",
+                                    masterUserList);
+
                         } catch (FileNotFoundException |
 							UnsupportedEncodingException ex) {
                             System.err.println("Exception: " + ex);
