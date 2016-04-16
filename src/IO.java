@@ -56,7 +56,7 @@ public class IO {
 	
 	// save user data to file
 	public static void saveUsers(String filename, ArrayList<User> users)
-		throws FileNotFoundExceptioon, UnsupportedEncodingException {
+		throws FileNotFoundException, UnsupportedEncodingException {
 		
 		try(PrintWriter tout = new PrintWriter(filename, "UTF-8")) {
 			for (User u : users) {
