@@ -21,7 +21,7 @@ public class Menu {
 
         for (Transmission t : visibleTransmissions){
 
-            System.out.printf("%s (%s): %s %n", t.getAuthor().getDisplayName(), t.getTimestamp(), t.getMessage());
+            System.out.println(t.toString());
         }
     }
 
@@ -32,7 +32,7 @@ public class Menu {
         Collections.sort(visibleTransmissions, new TCompByTime());
 
         for (Transmission t : visibleTransmissions){
-            System.out.printf("%s (%s): %s %n", t.getAuthor().getDisplayName(), t.getTimestamp(), t.getMessage());
+            System.out.println(t.toString());
         }
     }
 	
@@ -59,7 +59,7 @@ public class Menu {
 
             if (t.getMessage().contains(transmission)) {
 
-                System.out.println(t.getAuthor().getDisplayName() + " at " + t.getTimestamp() + ": " + t.getMessage());
+                System.out.println(t.toString());
                 foundTransmission = true;
             }
         }
