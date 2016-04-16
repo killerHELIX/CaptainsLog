@@ -34,7 +34,7 @@ public class Main {
         user3.addFollowing(user2);
         user2.addFollowing(user3);
 
-        masterTransmissionList = IO.loadTransmissions("../transmissionsFile", masterUserList);
+        masterTransmissionList = IO.loadTransmissions("transmissionsFile", masterUserList);
 
  /*       Transmission t1 = new Transmission("message1 from user to @user2 #fun",
                 user, true, masterUserList);
