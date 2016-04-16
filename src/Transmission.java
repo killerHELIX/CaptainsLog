@@ -84,10 +84,12 @@ public class Transmission {
 		return timeCreated;
 	}
 	
-	/** User u likes this transmission. */
 	public void isLikedBy(User u) {
 		this.favoritedBy.add(u);
 	}
+	
+	public void isNoLongerLikedBy(User u) {
+		this.favoirtedBy.remove(u);
 	
 	private void setTime(LocalDateTime t) {
 		timeCreated = t;

@@ -130,22 +130,22 @@ public class Menu {
             }
         }
 
-        System.out.println("Username not found.  " +
+        System.out.print("Username not found.  " +
         	"Would you like to register for an account?" +
 			" (yes/no)\n> ");
 
-        input = y.nextLine();
+        input = y.nextLine().toLowerCase();
         switch(input){
             case "yes":
-                System.out.println("Good choice.  What do you want" +
-					" your username to be? (IT IS PERMANENT) ");
+                System.out.print("Good choice.  What do you want" +
+					" your username to be? (IT IS PERMANENT) \n> ");
                 String username = y.nextLine();
 
-                System.out.println("What about your display name?");
+                System.out.print("What about your display name?\n> ");
                 String displayname = y.nextLine();
 
-                System.out.println("Final thing.  Enter your" +
-					" password: ");
+                System.out.print("Final thing.  Enter your" +
+					" password: \n> ");
                 String password = y.nextLine();
 
                 User newUser = new User(username, displayname,
