@@ -54,6 +54,40 @@ public class IO {
 		return output;
 	}
 	
+	// save user data to file
+	public static void saveUsers(String filename, ArrayList<User> users)
+		throws FileNotFoundExceptioon, UnsupportedEncodingException {
+		
+		try(PrintWriter tout = new PrintWriter(filename, "UTF-8")) {
+			for (User u : users) {
+				tout.println(u.toRecord());
+			}
+			tout.close();
+		}
+	}
+	
+	// pull user data out of file
+	public static ArrayList<User> loadUsers(String filename) {
+		ArrayList<User> users = new ArrayList<>();
+		Scanner fileIn = null;
+		try {
+			fileIn = new Scanner(new FileReader(filename));
+		} catch (Exception e) {
+			
+		}
+		String line = "";
+		while (fileIn.hasNextLine()) {
+			try {
+				line = fileIn.nextLine();
+				users.add(User.fromRecord(line));
+			} catch (Exception e) {
+				
+			}
+		}
+		return users;
+	}
+	
+	// save transmission data to file
 	public static void saveTransmissions(String filename,
 		ArrayList<Transmission> transmissions) throws FileNotFoundException,
 		UnsupportedEncodingException {
@@ -65,6 +99,7 @@ public class IO {
 		}
 	}
 	
+	// pull transmission data out of file
 	public static ArrayList<Transmission>
 		loadTransmissions(String filename, ArrayList<User> users) {
 

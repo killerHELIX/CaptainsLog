@@ -99,7 +99,11 @@ public class Transmission {
 	
 	@Override
 	public String toString() {
-		return author.toString() + ": " + message;
+		String portrait = String.join("\n",
+			Arrays.asList(author.getPhoto())) + "\n";
+		
+		return portrait + author.getDisplayName() + " (" +
+			author.getUsername() + ")\n" + message + "\n";
 	}
 	
 	/** For writing to files for storage - not to be printed to end user!*/
@@ -125,6 +129,7 @@ public class Transmission {
 			Boolean.toString(visible)+"\f"+app+"\f"+timeCreated.toString();
 	}
 	
+	// parse a line of text as a transmission
 	public static Transmission fromRecord(String record,
 		ArrayList<User> users) throws Exception {
 		

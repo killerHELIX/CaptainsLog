@@ -100,7 +100,6 @@ public class User extends Menu {
 	}
 	
 	public void setPassword(String in){
-
         this.password = in;
     }
 
@@ -109,6 +108,7 @@ public class User extends Menu {
 		return username + " (" + displayName + ")";
 	}
 	
+	// create record string for file storage
 	public String toRecord() throws IndexOutOfBoundsException {
 		String followers = "null", subscriptions = "null";
 		String photo = "null";
@@ -147,6 +147,7 @@ public class User extends Menu {
 			"\f" + this.password;
 	}
 	
+	// parse a line from the record file
 	public static User fromRecord(String record) {
 		String[] fields = record.split("\f");
 		String[] photo = fields[2].split(",");
@@ -162,6 +163,7 @@ public class User extends Menu {
 		return usr;
 	}
 	
+	// load relational data after users and transmissions are loaded
 	private void setUserLists(String[] blacklisted, String[] followers,
 		String[] following) {
 		if (!blacklisted[0].equals("null")) {
@@ -206,7 +208,6 @@ public class User extends Menu {
 				}
 			}
 		}
-		
 	}
 	
 }
