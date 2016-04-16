@@ -90,6 +90,7 @@ public class Transmission {
 	
 	public void isNoLongerLikedBy(User u) {
 		this.favoirtedBy.remove(u);
+	}
 	
 	private void setTime(LocalDateTime t) {
 		timeCreated = t;
