@@ -121,7 +121,12 @@ public class User extends Menu {
 
 	@Override
 	public String toString() {
-		return username + " (" + displayName + ")";
+
+        String portrait = "";
+        if (photo != null) {
+            portrait = String.join("\n", photo) + "\n";
+        }
+		return portrait +  username + " (" + displayName + ")";
 	}
 	
 	// create record string for file storage
