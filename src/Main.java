@@ -141,6 +141,12 @@ public class Main {
                 case "searchForUser":
                     searchedUser = menu.searchForUser(masterUserList, in);
 
+                    if (searchedUser == null){
+
+                        break;
+
+                    }
+
                     System.out.println("What would you like to do? You have the following options: ");
                     System.out.print("follow \t unfollow \t block \t unblock \n" +
                             "viewHistory \n \n");
@@ -203,7 +209,7 @@ public class Main {
 
                                 if (t.getAuthor().equals(searchedUser)){
 
-                                    System.out.printf("%s: %s %n", t.getTimestamp(), t.getMessage());
+                                    System.out.println(t);
                                 }
                             }
 
