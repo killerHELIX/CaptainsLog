@@ -42,7 +42,7 @@ public class Menu {
 	
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
-        System.out.println("Please enter the username of the user\n" +
+        System.out.print("Please enter the username of the user\n" +
 			"that you would like to search for: \n>");
         String nm = t.nextLine();
         System.out.println(""); // padding
@@ -108,14 +108,14 @@ public class Menu {
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
-        System.out.println("Welcome.  Enter your username" +
+        System.out.print("Welcome.  Enter your username" +
 			" (or 0 if you're not a user yet): \n> ");
         String input = y.nextLine();
 
         for (User u : masterUserList) {
 
             if (u.getUsername().equals(input)) {
-                System.out.println("User successfully found. " +
+                System.out.print("User successfully found. " +
                         " Enter your password: \n>");
                 input = y.nextLine();
 
@@ -131,7 +131,7 @@ public class Menu {
             }
         }
 
-            System.out.println("Username not found.  " +
+            System.out.print("Username not found.  " +
                     "Would you like to register for an account?" +
 					" (yes/no)\n> ");
 
@@ -139,14 +139,14 @@ public class Menu {
             switch(input){
                 case "yes":
 
-                    System.out.println("Good choice.  What do you want" +
+                    System.out.print("Good choice.  What do you want" +
 						" your username to be? (IT IS PERMANENT) \n> ");
                     String username = y.nextLine();
 
-                    System.out.println("What about your display name? \n>");
+                    System.out.print("What about your display name? \n>");
                     String displayname = y.nextLine();
 
-                    System.out.println("Final thing.  Enter your" +
+                    System.out.print("Final thing.  Enter your" +
 						" password: \n>");
                     String password = y.nextLine();
 
@@ -173,7 +173,7 @@ public class Menu {
     }
     
     public boolean logout(Scanner y) {
-    	System.out.println("Are you sure you want to log out? (yes/no) \n> ");
+    	System.out.print("Are you sure you want to log out? (yes/no) \n> ");
         String inp = y.nextLine();
         if (inp.equals("yes")) {
 			System.out.println("Logout successful. " +
@@ -223,7 +223,7 @@ public class Menu {
                     case "changeDisplayname":
                         System.out.println("Current display name: " +
 						currentUser.getDisplayName());
-                        System.out.println("Enter the display name you" +
+                        System.out.print("Enter the display name you" +
 							" want: \n>");
                         currentUser.setDisplayName(in.nextLine());
                         System.out.println("Your new display name is " +
@@ -232,18 +232,18 @@ public class Menu {
                         break;
 
                     case "changePassword":
-                         System.out.println("Enter your current" +
+                         System.out.print("Enter your current" +
 							"password: \n>");
                          String oldPass = in.nextLine();
                          if (currentUser.isPasswordMatched(oldPass)){
                              System.out.println("Password successfully " +
 								"matched.");
 
-                             System.out.println("Enter your new " +
+                             System.out.print("Enter your new " +
 								"password: \n>");
                              String newPass = in.nextLine();
 
-                             System.out.println("Re-enter your new " +
+                             System.out.print("Re-enter your new " +
 								"password: \n>");
                              String confirm = in.nextLine();
 
@@ -262,7 +262,7 @@ public class Menu {
                          break;
                      
                     case "changePhoto":
-                        System.out.println("Enter the filepath for " +
+                        System.out.print("Enter the filepath for " +
 						"a new ASCII photo: \n>");
                         String filepath = in.nextLine();
 
