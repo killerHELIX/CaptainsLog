@@ -38,7 +38,7 @@ public class Menu {
 	
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
-        System.out.println("Please enter the username of the user that you would like to search for: ");
+        System.out.println("Please enter the username you'd like to search for: ");
         String nm = t.nextLine();
             
         for (User u : masterUserList){
@@ -71,25 +71,27 @@ public class Menu {
 		return null; // added null return for compilation
     }
 	
-    public boolean searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
-		
-        System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
-        String hashtag = t.nextLine();
+    public void searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
+
+        boolean notFound = true;
+
+        System.out.print("Enter the hashtag you'd like searched transmissions to contain: \n#");
+        String hashtag = "#" + t.nextLine();
+        System.out.println();
         
         for (Transmission h : masterTransmissionList) {
-            
-            if (h.getMessage().contains(hashtag)){
+
+            if (h.getHashtags().contains(hashtag)){
                 
-                System.out.println(h.getAuthor().getDisplayName() + " composed a transmission with your entered hashtag, and their transmission stated: " + h.getMessage());
-                return true;
-            }     
-            else {
-                
-                System.out.println("The hashtag that you have entered: " + hashtag + " has not been used by any other users within CaptainsLog.");
-                return false;
+                System.out.printf("%s (%s): %s %n",h.getAuthor().getDisplayName(), h.getTimestamp(), h.getMessage());
+                notFound = false;
             }
         }
-                return false;
+
+        if (notFound){
+
+            System.out.printf("The hashtag #%s hasn't been used by any users yet. %n", hashtag);
+        }
     }
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
