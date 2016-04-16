@@ -45,7 +45,7 @@ public class Menu {
             
             if (u.getUsername().equals(nm)){
                 System.out.println("found user: " + u.getUsername());
-                return u;               
+                return u;
             }
         }
 		return null;
@@ -228,7 +228,7 @@ public class Menu {
         for (User u : currentUser.getFollowing()){
 
             for (Transmission t : masterTransmissionList){
-				if (t.getAuthor().equals(u)) {
+				if (t.getAuthor().equals(u) && !currentUser.getBlacklist().contains(u)) {
                 	visibleTransmissions.add(t);
 				}
             }
