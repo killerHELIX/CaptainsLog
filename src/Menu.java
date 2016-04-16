@@ -23,8 +23,10 @@ public class Menu {
 
         for (Transmission t : visibleTransmissions){
 
-            System.out.printf("[%d favorites] %s", t.getNumFavorites(), t.toString());
+            System.out.printf("[%d favorites] %s",
+				t.getNumFavorites(), t.toString());
         }
+		System.out.println("");
     }
 
     public void sortByTime(User currentUser,
@@ -38,17 +40,18 @@ public class Menu {
         for (Transmission t : visibleTransmissions){
             System.out.println(t.toString());
         }
+		System.out.println("");
     }
 	
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
-        System.out.println("Please enter the username of the user\n" +
+        System.out.println("\nPlease enter the username of the user\n" +
 			"that you would like to search for: ");
         String nm = t.nextLine();
         System.out.println(""); // padding
         for (User u : masterUserList){
             if (u.getUsername().equals(nm)){
-                System.out.println("found user: " + u.toString());
+                System.out.println("found user: " + u.toString() + "\n");
                 return u;
             }
         }
@@ -72,24 +75,23 @@ public class Menu {
 
         if (!foundTransmission) {
             System.out.println("No transmission found containing" +
-				" your search.");
+				" your search.\n");
         }
 
 		return null; // added null return for compilation
     }
 	
-    public void searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
+    public void searchByHashtag(ArrayList<Transmission>
+		masterTransmissionList, Scanner t) {
 
         boolean notFound = true;
 
         System.out.print("Enter the hashtag you'd like searched" +
 			" transmissions to contain: #");
         String hashtag = "#" + t.nextLine();
-
         for (Transmission h : masterTransmissionList) {
-
             if (h.getHashtags().contains(hashtag)) {
-                System.out.printf("%s (%s): %s %n",
+                System.out.printf("%s (%s): %s %n\n",
 					h.getAuthor().getDisplayName(), h.getTimestamp(),
 					h.getMessage());
                 notFound = false;
@@ -98,15 +100,15 @@ public class Menu {
 
         if (notFound) {
 
-            System.out.printf("%s has not been used by anybody yet.",
+            System.out.printf("%s has not been used by anybody yet.\n",
 				hashtag);
         }
     }
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
-        System.out.println("Welcome.  Enter your username" +
-			" (or 0 if you're not a user yet): ");
+        System.out.print("Welcome.  Enter your username" +
+			" (or 0 if you're not a user yet)\n> ");
         String input = y.nextLine();
 
         for (User u : masterUserList) {
@@ -128,44 +130,41 @@ public class Menu {
             }
         }
 
-            System.out.println("Username not found.  " +
-                    "Would you like to register for an account?" +
-					" (yes/no)\n> ");
+        System.out.println("Username not found.  " +
+        	"Would you like to register for an account?" +
+			" (yes/no)\n> ");
 
-            input = y.nextLine();
-            switch(input){
-                case "yes":
+        input = y.nextLine();
+        switch(input){
+            case "yes":
+                System.out.println("Good choice.  What do you want" +
+					" your username to be? (IT IS PERMANENT) ");
+                String username = y.nextLine();
 
-                    System.out.println("Good choice.  What do you want" +
-						" your username to be? (IT IS PERMANENT) ");
-                    String username = y.nextLine();
+                System.out.println("What about your display name?");
+                String displayname = y.nextLine();
 
-                    System.out.println("What about your display name?");
-                    String displayname = y.nextLine();
+                System.out.println("Final thing.  Enter your" +
+					" password: ");
+                String password = y.nextLine();
 
-                    System.out.println("Final thing.  Enter your" +
-						" password: ");
-                    String password = y.nextLine();
+                User newUser = new User(username, displayname,
+					password);
+                masterUserList.add(newUser);
+                return newUser;
 
-                    User newUser = new User(username, displayname,
-						password);
-                    masterUserList.add(newUser);
-                    return newUser;
-
-                case "no":
-
-                    System.out.println("Well, you're missing out." +
-						" Later, nerd.");
-                    return null;
+            case "no":
+                System.out.println("Well, you're missing out." +
+					" Later, nerd.");
+                return null;
 
                 default:
-
                     System.out.println("You didn't select 'yes' or 'no'." +
 						"  The gods frown upon you.  Begone, demon.");
                     System.exit(2);
                     break;
 
-            }
+        }
         return null;
     }
     
@@ -265,7 +264,7 @@ public class Menu {
 
                         currentUser.setPhoto(filepath);
 
-                        System.out.println(currentUser);
+                        System.out.println(currentUser + "\n");
                         break;
 
                     case "exit":

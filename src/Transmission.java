@@ -99,8 +99,7 @@ public class Transmission {
 	
 	@Override
 	public String toString() {
-		return this.author.toString() + " (" +
-			author.getUsername() + ")\n" + message + "\n" +
+		return this.author.toString() + message + "\n" +
 			getTimestamp() + "\n";
 	}
 	
