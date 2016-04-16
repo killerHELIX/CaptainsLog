@@ -89,7 +89,7 @@ public class Main {
                     for (User u : masterUserList) {
                         System.out.println(u);
 
-                        System.out.println("Following: ");
+                       /* System.out.println("Following: ");
                         for (User v : u.getFollowing()){
                             System.out.println(v);
                         }
@@ -97,7 +97,7 @@ public class Main {
                         System.out.println("Followers: ");
                         for (User w : u.getFollowers()){
                             System.out.println(w);
-                        }
+                        }*/
 
                         System.out.println();
                     }
