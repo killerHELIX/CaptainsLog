@@ -23,7 +23,7 @@ public class Menu {
 
         for (Transmission t : visibleTransmissions){
 
-            System.out.println(t.toString());
+            System.out.printf("[%d favorites] %s", t.getNumFavorites(), t.toString());
         }
     }
 
@@ -48,7 +48,7 @@ public class Menu {
         System.out.println(""); // padding
         for (User u : masterUserList){
             if (u.getUsername().equals(nm)){
-                System.out.println("found user: " + u.getUsername());
+                System.out.println("found user: " + u.toString());
                 return u;
             }
         }
@@ -233,20 +233,25 @@ public class Menu {
 							"password: ");
                          String oldPass = in.nextLine();
                          if (currentUser.isPasswordMatched(oldPass)){
-                             System.out.println("Password successfully" +
+                             System.out.println("Password successfully " +
 								"matched.");
-                             System.out.println("Enter your new" + 
+
+                             System.out.println("Enter your new " +
 								"password: ");
                              String newPass = in.nextLine();
-                             System.out.println("Re-enter your new" +
+
+                             System.out.println("Re-enter your new " +
 								"password: ");
                              String confirm = in.nextLine();
+
                              if (newPass.equals(confirm)){
+
                                  currentUser.setPassword(confirm);
-                                 System.out.println("New password" +
+                                 System.out.println("New password " +
 									"accepted.");
+
                              } else {
-                             	System.out.println("New password does" + 
+                             	System.out.println("New password does " +
 									"not match in both cases!");
                              }
                          }
@@ -254,17 +259,14 @@ public class Menu {
                          break;
                      
                     case "changePhoto":
-                        System.out.println("Enter the filepath for" +
+                        System.out.println("Enter the filepath for " +
 						"a new ASCII photo: ");
                         String filepath = in.nextLine();
-                        try {
-                             String[] newPhoto = IO.getASCIIArt(filepath,
-								true);
-                         } catch (IOException ex) {
-                             System.err.println(ex);
-                         }
-                         System.out.println("");
-                         break;
+
+                        currentUser.setPhoto(filepath);
+
+                        System.out.println(currentUser);
+                        break;
 
                     case "exit":
                         System.out.println("Returning to main menu.\n");

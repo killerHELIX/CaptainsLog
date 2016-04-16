@@ -148,6 +148,7 @@ public class Main {
                             if (!currentUser.getFollowing().contains(
 								searchedUser)){
                                 currentUser.addFollowing(searchedUser);
+                                System.out.printf("Followed %s!", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 									"You're already following this user.");
@@ -158,6 +159,7 @@ public class Main {
                             if (currentUser.getFollowing().contains(
 								searchedUser)) {
                                 currentUser.removeFollowing(searchedUser);
+                                System.out.printf("Unfollowed %s!", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 									"You're not following this user.");
@@ -169,6 +171,7 @@ public class Main {
 								searchedUser)) {
 
                                 currentUser.block(searchedUser);
+                                System.out.printf("Blocked %s!", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 								"This user is already blocked.");
@@ -179,6 +182,7 @@ public class Main {
                             if (currentUser.getBlacklist().contains(
 								searchedUser)) {
                                 currentUser.unblock(searchedUser);
+                                System.out.printf("Unblocked %s!", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 									"This user isn't blocked.");
