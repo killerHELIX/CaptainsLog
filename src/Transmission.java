@@ -84,6 +84,10 @@ public class Transmission {
 		return timeCreated;
 	}
 	
+	public ArrayList<User> getUsersWhoLike() {
+		return favoritedBy;
+	}
+	
 	public void isLikedBy(User u) {
 		this.favoritedBy.add(u);
 	}
