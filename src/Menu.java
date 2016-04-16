@@ -136,23 +136,30 @@ public class Menu {
         return false;             
     }
     
-    public void modifySettings(User currentUser, Scanner in,
-		ArrayList<Transmission> mtl) {
+    public void modifySettings(User currentUser, Scanner in, ArrayList<Transmission> mtl) {
+
 		System.out.println("You have access to the following commands: \n" +
-        	"changeDisplayname \t changePassword \t changePhoto \n" +
-            "currentInfo \n" + "Which one do you want to change? ");
+        	    "changeDisplayname \t changePassword \t changePhoto \n" +
+                "currentInfo \t exit \n" +
+                "Which one do you want to change? ");
+
                 switch(in.nextLine()) {
                     case "currentInfo":
                         System.out.println("Username: " +
 							currentUser.getUsername());
+
                         System.out.println("Display name: " +
 							currentUser.getDisplayName());
+
                         System.out.println("Photo: " +
 							currentUser.getPhoto());
+
                         System.out.println("Followers: " +
 							currentUser.getFollowers());
+
                         System.out.println("Users Following: " +
 							currentUser.getFollowing());
+
                         System.out.print("History: ");
                         for (Transmission t : mtl){
                             if (t.getAuthor().equals(currentUser)){
@@ -210,6 +217,11 @@ public class Menu {
                          }
                          System.out.println("Enter new Photo");
                          break;
+
+                    case "exit":
+
+                        System.out.println("Returning to main menu.");
+                        break;
 
                     default:
                         System.out.println("Command not recognized.");
