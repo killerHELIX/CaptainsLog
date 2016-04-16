@@ -144,7 +144,7 @@ public class User extends Menu {
 			}
 		}
 		
-		if (photo != null) {
+		if (this.photo != null) {
 			photo = String.join(",", this.photo);
 		}
 		
@@ -173,7 +173,7 @@ public class User extends Menu {
 		
 		User usr = new User(fields[0], fields[1], fields[6]);
 		if (!photo[0].equals("null")) {
-			usr.setPhoto(photo);
+			usr.setPhoto(null);
 		}
 		usr.setUserLists(blacklisted, followers, following);
 		return usr;
