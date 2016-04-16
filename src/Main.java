@@ -35,7 +35,7 @@ public class Main {
         user2.addFollowing(user3);
 
         masterTransmissionList = IO.loadTransmissions(
-			"../transmissionsFile", masterUserList);
+			"transmissionsFile", masterUserList);
 
  /*       Transmission t1 = new Transmission("message1 from user to @user2 #fun",
                 user, true, masterUserList);
@@ -190,7 +190,12 @@ public class Main {
                             break;
 
                         case "viewHistory":
-							// XXX 
+                            for (Transmission t : masterTransmissionList){
+                                if (t.getAuthor().equals(searchedUser)){
+                                    System.out.printf("%s: %s %n",
+										t.getTimestamp(), t.getMessage());
+                                }
+                            }
                             break;
 
                         default:

@@ -78,28 +78,25 @@ public class Menu {
 		return null; // added null return for compilation
     }
 	
-    public boolean searchByHashtag(
-		ArrayList<Transmission> masterTransmissionList, Scanner t) {
-		
-        System.out.println("Please enter the hashtag of the transmission\n" 
-			+ "that you would like to search for: ");
-        String hashtag = t.nextLine();
-        
+    public void searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
+
+        boolean notFound = true;
+
+        System.out.print("Enter the hashtag you'd like searched transmissions to contain: #");
+        String hashtag = "#" + t.nextLine();
+
         for (Transmission h : masterTransmissionList) {
-            if (h.getMessage().contains(hashtag)){
-                System.out.println(h.getAuthor().getDisplayName() +
-					" composed a transmission\n" + "with your entered" +
-					" hashtag, and their transmission stated: " +
-					h.getMessage());
-                return true;
-            } else {
-                System.out.println("The hashtag that you have entered: " + 
-				hashtag + "\nhas not been used by any other users on\n" +
-				"CaptainsLog.");
-                return false;
+
+            if (h.getHashtags().contains(hashtag)) {
+                System.out.printf("%s (%s): %s %n", h.getAuthor().getDisplayName(), h.getTimestamp(), h.getMessage());
+                notFound = false;
             }
         }
-                return false;
+
+        if (notFound) {
+
+            System.out.printf("%s has not been used by anybody yet.", hashtag);
+        }
     }
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
@@ -139,23 +136,30 @@ public class Menu {
         return false;             
     }
     
-    public void modifySettings(User currentUser, Scanner in,
-		ArrayList<Transmission> mtl) {
+    public void modifySettings(User currentUser, Scanner in, ArrayList<Transmission> mtl) {
+
 		System.out.println("You have access to the following commands: \n" +
-        	"changeDisplayname \t changePassword \t changePhoto \n" +
-            "currentInfo \n" + "Which one do you want to change? ");
+        	    "changeDisplayname \t changePassword \t changePhoto \n" +
+                "currentInfo \t exit \n" +
+                "Which one do you want to change? ");
+
                 switch(in.nextLine()) {
                     case "currentInfo":
                         System.out.println("Username: " +
 							currentUser.getUsername());
+
                         System.out.println("Display name: " +
 							currentUser.getDisplayName());
+
                         System.out.println("Photo: " +
 							currentUser.getPhoto());
+
                         System.out.println("Followers: " +
 							currentUser.getFollowers());
+
                         System.out.println("Users Following: " +
 							currentUser.getFollowing());
+
                         System.out.print("History: ");
                         for (Transmission t : mtl){
                             if (t.getAuthor().equals(currentUser)){
@@ -213,6 +217,11 @@ public class Menu {
                          }
                          System.out.println("Enter new Photo");
                          break;
+
+                    case "exit":
+
+                        System.out.println("Returning to main menu.");
+                        break;
 
                     default:
                         System.out.println("Command not recognized.");
