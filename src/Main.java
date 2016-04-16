@@ -142,10 +142,14 @@ public class Main {
 
                 case "searchForUser":
                     searchedUser = menu.searchForUser(masterUserList, in);
-                    System.out.println("What would you like to do?" +
-						"\nYou have the following options: ");
+                    if (searchedUser == null){
+                        break;
+                    }
+
+                    System.out.println("What would you like to do?\n" +
+						"You have the following options: ");
                     System.out.print("follow \t unfollow \t block \t" +
-					" unblock \n" + "viewHistory \n \n");
+						"unblock \n" + "viewHistory \n \n");
 
                     switch(in.nextLine()){
                         case "follow":
@@ -192,8 +196,7 @@ public class Main {
                         case "viewHistory":
                             for (Transmission t : masterTransmissionList){
                                 if (t.getAuthor().equals(searchedUser)){
-                                    System.out.printf("%s: %s %n",
-										t.getTimestamp(), t.getMessage());
+                                    System.out.println(t);
                                 }
                             }
                             break;
