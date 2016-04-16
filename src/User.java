@@ -173,7 +173,7 @@ public class User extends Menu {
 		
 		User usr = new User(fields[0], fields[1], fields[6]);
 		if (!photo[0].equals("null")) {
-			usr.setPhoto(photo);
+			usr.setPhoto((String[]) null);
 		}
 		usr.setUserLists(blacklisted, followers, following);
 		return usr;
