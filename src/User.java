@@ -144,7 +144,7 @@ public class User extends Menu {
 			}
 		}
 		
-		if (photo != null) {
+		if (this.photo != null) {
 			photo = String.join(",", this.photo);
 		}
 		
