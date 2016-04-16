@@ -101,25 +101,64 @@ public class Menu {
     
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
-        System.out.println("Welcome.  Enter your username: ");
+        System.out.println("Welcome.  Enter your username (or 0 if you're not a user yet): ");
         String input = y.nextLine();
 
-        for (User u : masterUserList){
-            if (u.getUsername().equals(input)){
+        for (User u : masterUserList) {
+
+            if (u.getUsername().equals(input)) {
                 System.out.println("User successfully found. " +
-					" Enter your password: ");
+                        " Enter your password: ");
                 input = y.nextLine();
 
                 if (u.isPasswordMatched(input)) {
                     System.out.println("Password successfully matched. " +
-						" Welcome, " + u.getUsername() + ".");
+                            " Welcome, " + u.getUsername() + ".");
                     System.out.println();
                     return u;
+
                 } else {
                     System.out.println("Password not matched.");
                 }
             }
         }
+
+            System.out.println("Username not found.  " +
+                    "Would you like to register for an account? (yes/no)");
+
+            input = y.nextLine();
+            switch(input){
+                case "yes":
+
+                    System.out.println("Good choice.  What do you want your username to be? (IT IS PERMANENT) ");
+                    String username = y.nextLine();
+
+                    System.out.println("What about your display name?");
+                    String displayname = y.nextLine();
+
+                    System.out.println("Final thing.  Enter your password: ");
+                    String password = y.nextLine();
+
+                    User newUser = new User(username, displayname, password);
+                    System.err.println(newUser.toRecord());
+                    masterUserList.add(newUser);
+
+                    return newUser;
+
+                case "no":
+
+                    System.out.println("Well, you're missing out.  Later, nerd.");
+
+                    return null;
+
+                default:
+
+                    System.out.println("You didn't select 'yes' or 'no'.  The gods frown upon you.  Begone, demon.");
+                    System.exit(0);
+
+                    break;
+
+            }
         return null;
     }
     
@@ -140,7 +179,7 @@ public class Menu {
 
 		System.out.println("You have access to the following commands: \n" +
         	    "changeDisplayname \t changePassword \t changePhoto \n" +
-                "currentInfo \t exit \n" +
+                "currentInfo \n exit \n" +
                 "Which one do you want to change? ");
 
                 switch(in.nextLine()) {
