@@ -48,7 +48,7 @@ public class Menu {
         System.out.println(""); // padding
         for (User u : masterUserList){
             if (u.getUsername().equals(nm)){
-                System.out.println("found user: " + u.getUsername());
+                System.out.println("found user: " + u.toString());
                 return u;
             }
         }
