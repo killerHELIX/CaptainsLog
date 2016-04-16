@@ -108,7 +108,13 @@ public class Main {
                     System.out.println("You're now creating a" +
 					"transmission.\n What do you want to transmit?");
                     String input = in.nextLine();
-
+					
+					// enforce twitter charcount limit
+					if (input.length() > 140) {
+						System.out.println("Message too long!" +
+							" Keep it under 140, ya pirate!");
+						break;
+					}
                     masterTransmissionList.add(
 						new Transmission(input, currentUser,
 						true, masterUserList));
