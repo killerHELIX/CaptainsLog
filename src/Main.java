@@ -53,7 +53,7 @@ public class Main {
                     "searchForUser \t searchForTransmission" +
 					"\t searchByHashtag \n" +"modifySettings \t logout \n");
 
-            System.out.println("Enter your choice: ");
+            System.out.print("Enter your choice: \n>");
             switch(in.nextLine()) {
                 case "test":
                     for (Transmission t : masterTransmissionList) {
@@ -69,8 +69,8 @@ public class Main {
                     break;
 
                 case "compose":
-                    System.out.println("You're now creating a" +
-					"transmission.\n What do you want to transmit?");
+                    System.out.print("You're now creating a" +
+					"transmission.\n What do you want to transmit?\n>");
                     String input = in.nextLine();
 					
 					// enforce twitter charcount limit
@@ -99,8 +99,8 @@ public class Main {
                         }
                     }
 
-                    System.out.println("Enter the index you want to " +
-						"delete (-1 to cancel): ");
+                    System.out.print("Enter the index you want to " +
+						"delete (-1 to cancel): \n>");
                     int index = Integer.valueOf(in.nextLine());
 
                     if (index == -1) {
@@ -141,7 +141,7 @@ public class Main {
                     System.out.println("What would you like to do?\n" +
 						"You have the following options: ");
                     System.out.print("follow \t unfollow \t block \t" +
-						"unblock \n" + "viewHistory \n \n");
+						"unblock \n" + "viewHistory \n \n>");
 
                     switch(in.nextLine()){
                         case "follow":
@@ -207,8 +207,8 @@ public class Main {
                     break;
 
                 case "searchForTransmission":
-                    System.out.println("Enter what you'd like to" +
-						" search for: ");
+                    System.out.print("Enter what you'd like to" +
+						" search for: \n>");
                     menu.searchForTransmission(in.next(),
 						currentUser, masterTransmissionList);
 
