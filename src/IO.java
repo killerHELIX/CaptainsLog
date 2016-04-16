@@ -1,4 +1,4 @@
-/** IO manager for CaptainsLog.
+/* IO manager for CaptainsLog.
  * @author James Murphy
  * CPSC 240 / Object Oriented Programming
  * Twitter Project
@@ -14,7 +14,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 public class IO {
-	/** Obtains ASCII art from a file.
+	/* Obtains ASCII art from a file.
 	 * @param filename The name of the file containing the ASCII art.
 	 * @param avatar Whether the ASCII art is an avatar and must be square.
 	 * @throws IOException When file is missing or if avatar text not square

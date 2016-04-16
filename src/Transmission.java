@@ -1,4 +1,4 @@
-/** Transmission data member for CaptainsLog.
+/* Transmission data member for CaptainsLog.
  *  @author Ryan Harris
  *  @author James Murphy
  */
@@ -17,7 +17,7 @@ public class Transmission {
     private ArrayList<User> favoritedBy;
     private LocalDateTime timeCreated;
 
-    /** Constructor for Transmission.
+    /* Constructor for Transmission.
      *
      * @param message the content of the transmission
      * @param author the User who created the transmission
@@ -99,17 +99,12 @@ public class Transmission {
 	
 	@Override
 	public String toString() {
-		String portrait = "";
-		String[] photo = author.getPhoto();
-		if (photo != null) {
-			portrait = String.join("\n", author.getPhoto()) + "\n";
-		}
-		return portrait + author.getDisplayName() + " (" +
+		return this.author.toString() + " (" +
 			author.getUsername() + ")\n" + message + "\n" +
 			getTimestamp() + "\n";
 	}
 	
-	/** For writing to files for storage - not to be printed to end user!*/
+	/* For writing to files for storage - not to be printed to end user!*/
 	public String toRecord() {
 		Object[] fbarray = favoritedBy.toArray();
 		User[] appreciators = new User[fbarray.length];
@@ -118,7 +113,6 @@ public class Transmission {
 		}
 
         String app = "";
-
         if (fbarray.length == 0) {
             app = "null";
         } else {

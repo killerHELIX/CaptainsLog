@@ -28,33 +28,8 @@ public class Main {
             u.loadUserLists(masterUserList);
         }
 
-
-        /* User user = new User ("username", "displayname", "password");
-        User user2 = new User ("username2", "displayname2", "password2");
-        User user3 = new User ("username3", "displayname3", "password3");
-		
-        masterUserList.add(user);
-        masterUserList.add(user2);
-        masterUserList.add(user3);
-        
-        user.addFollowing(user2);
-        user3.addFollowing(user2);
-        user2.addFollowing(user3);*/
-
         masterTransmissionList = IO.loadTransmissions(
 			"transmissionsFile", masterUserList);
-
- /*       Transmission t1 = new Transmission("message1 from user to @user2 #fun",
-                user, true, masterUserList);
-        Transmission t2 = new Transmission("message2 from user2 to @user3 #bikes",
-                user2, true, masterUserList);
-        Transmission t3 = new Transmission("message3 from user3 to @user #sand",
-                user3, true, masterUserList); 
-
-
-        masterTransmissionList.add(t1);
-        masterTransmissionList.add(t2);
-        masterTransmissionList.add(t3);*/
 
         boolean isInMenu = true;
         boolean isLoggedIn = false;
@@ -88,17 +63,6 @@ public class Main {
 
                     for (User u : masterUserList) {
                         System.out.println(u);
-
-                       /* System.out.println("Following: ");
-                        for (User v : u.getFollowing()){
-                            System.out.println(v);
-                        }
-
-                        System.out.println("Followers: ");
-                        for (User w : u.getFollowers()){
-                            System.out.println(w);
-                        }*/
-
                         System.out.println();
                     }
                     Main.sleep(500);
@@ -124,7 +88,7 @@ public class Main {
 
                 case "delete":
                     System.out.println("Here are all of your" +
-						"transmissions: ");
+						" transmissions: ");
 
                     for (Transmission t : masterTransmissionList){
                         if (t.getAuthor().equals(currentUser)){
@@ -240,7 +204,7 @@ public class Main {
 
                 case "searchForTransmission":
                     System.out.println("Enter what you'd like to" +
-						"search for: ");
+						" search for: ");
                     menu.searchForTransmission(in.next(),
 						currentUser, masterTransmissionList);
 
