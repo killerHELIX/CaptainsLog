@@ -34,7 +34,8 @@ public class Main {
         user3.addFollowing(user2);
         user2.addFollowing(user3);
 
-        masterTransmissionList = IO.loadTransmissions("../transmissionsFile", masterUserList);
+        masterTransmissionList = IO.loadTransmissions(
+			"../transmissionsFile", masterUserList);
 
  /*       Transmission t1 = new Transmission("message1 from user to @user2 #fun",
                 user, true, masterUserList);
@@ -63,68 +64,68 @@ public class Main {
         }
 
         while (isInMenu && isLoggedIn){
-
-            System.out.println("You have access to the following commands: ");
+            System.out.println(
+				"You have access to the following commands: ");
             System.out.print("compose \t\t delete \n" +
                     "sortByTime \t\t sortByPopularity \n" +
-                    "searchForUser \t searchForTransmission \t searchByHashtag \n" +
-                    "modifySettings \t logout \n");
+                    "searchForUser \t searchForTransmission" +
+					"\t searchByHashtag \n" +"modifySettings \t logout \n");
 
             System.out.println("Enter your choice: ");
-            switch(in.nextLine()){
-
+            switch(in.nextLine()) {
                 case "test":
-
-                    for (Transmission t : masterTransmissionList){
-
-                        System.out.printf("[%s] %s %n", masterTransmissionList.indexOf(t), t.getMessage());
-
+                    for (Transmission t : masterTransmissionList) {
+                        System.out.printf("[%s] %s %n\n",
+							masterTransmissionList.indexOf(t),
+							t.getMessage());
                     }
-
                     Main.sleep(500);
                     break;
 
                 case "compose":
-
-                    System.out.println("You're now creating a transmission.  What do you want to transmit?");
+                    System.out.println("You're now creating a" +
+					"transmission.\n What do you want to transmit?");
                     String input = in.nextLine();
 
-                    masterTransmissionList.add(new Transmission(input, currentUser, true, masterUserList));
+                    masterTransmissionList.add(
+						new Transmission(input, currentUser,
+						true, masterUserList));
 
                     Main.sleep(500);
                     break;
 
                 case "delete":
-
-                    System.out.println("Here are all of your transmissions: ");
+                    System.out.println("Here are all of your" +
+						"transmissions: ");
 
                     for (Transmission t : masterTransmissionList){
-
                         if (t.getAuthor().equals(currentUser)){
-
-                            System.out.printf("[%s] %s: %s %n", masterTransmissionList.indexOf(t), t.getTimestamp(), t.getMessage());
+                            System.out.printf("[%s] %s: %s %n",
+								masterTransmissionList.indexOf(t),
+								t.getTimestamp(), t.getMessage());
 
                         }
                     }
 
-                    System.out.println("Enter the index you want to delete (-1 to cancel): ");
+                    System.out.println("Enter the index you want to" +
+						"delete (-1 to cancel): ");
                     int index = Integer.valueOf(in.nextLine());
 
-                    if (index == -1){
-                        System.out.println("Cancelling deletion.  Returning to main menu.");
+                    if (index == -1) {
+                        System.out.println("Cancelling deletion. " +
+							" Returning to main menu.");
                         break;
 
                     } else if (index <= masterTransmissionList.size()){
-
-                        System.out.printf("Removing index [%d]: '%s'...", index, masterTransmissionList.get(index).getMessage());
+                        System.out.printf("Removing index [%d]: '%s'...",
+							index,
+							masterTransmissionList.get(index).getMessage());
                         masterTransmissionList.remove(index);
-                        System.out.println("Removed.");
-
+                        System.out.println("Removed.\n");
                     } else {
-
-                        System.out.println("No transmission matches the selected index.");
+                        System.out.println("No transmission matches" +
+							" the selected index.");
                     }
-
                     Main.sleep(500);
                     break;
 
@@ -134,75 +135,65 @@ public class Main {
                     break;
 
                 case "sortByPopularity":
-                    menu.sortByPopularity(currentUser, masterTransmissionList);
+                    menu.sortByPopularity(currentUser,
+						masterTransmissionList);
                     Main.sleep(500);
                     break;
 
                 case "searchForUser":
                     searchedUser = menu.searchForUser(masterUserList, in);
-
-                    System.out.println("What would you like to do? You have the following options: ");
-                    System.out.print("follow \t unfollow \t block \t unblock \n" +
-                            "viewHistory \n \n");
+                    System.out.println("What would you like to do?" +
+						"\nYou have the following options: ");
+                    System.out.print("follow \t unfollow \t block \t" +
+					" unblock \n" + "viewHistory \n \n");
 
                     switch(in.nextLine()){
-
                         case "follow":
-
-                            if (!currentUser.getFollowing().contains(searchedUser)){
-
+                            if (!currentUser.getFollowing().contains(
+								searchedUser)){
                                 currentUser.addFollowing(searchedUser);
-
                             } else {
-
-                                System.out.println("You're already following this user.");
+                                System.out.println(
+									"You're already following this user.");
                             }
-
                             break;
 
                         case "unfollow":
-
-                            if (currentUser.getFollowing().contains(searchedUser)){
-
+                            if (currentUser.getFollowing().contains(
+								searchedUser)) {
                                 currentUser.removeFollowing(searchedUser);
                             } else {
-
-                                System.out.println("You're not following this user.");
+                                System.out.println(
+									"You're not following this user.");
                             }
-
                             break;
 
                         case "block":
-
-                            if (!currentUser.getBlacklist().contains(searchedUser)){
+                            if (!currentUser.getBlacklist().contains(
+								searchedUser)) {
 
                                 currentUser.block(searchedUser);
-
                             } else {
-
-                                System.out.println("This user is already blocked.");
+                                System.out.println(
+								"This user is already blocked.");
                             }
-
                             break;
 
                         case "unblock":
-
-                            if (currentUser.getBlacklist().contains(searchedUser)) {
-
+                            if (currentUser.getBlacklist().contains(
+								searchedUser)) {
                                 currentUser.unblock(searchedUser);
                             } else {
-
-                                System.out.println("This user isn't blocked.");
+                                System.out.println(
+									"This user isn't blocked.");
                             }
-
                             break;
 
                         case "viewHistory":
-
+							// XXX 
                             break;
 
                         default:
-
                             System.out.println("Command not recognized.");
                             break;
                     }
@@ -212,8 +203,10 @@ public class Main {
                     break;
 
                 case "searchForTransmission":
-                    System.out.println("Enter what you'd like to search for: ");
-                    menu.searchForTransmission(in.next(), currentUser, masterTransmissionList);
+                    System.out.println("Enter what you'd like to" +
+						"search for: ");
+                    menu.searchForTransmission(in.next(),
+						currentUser, masterTransmissionList);
 
                     Main.sleep(500);
                     break;
@@ -230,8 +223,10 @@ public class Main {
                         currentUser = null;
 
                         try {
-                            IO.saveTransmissions("transmissionsFile", masterTransmissionList);
-                        } catch (FileNotFoundException|UnsupportedEncodingException ex){
+                            IO.saveTransmissions("transmissionsFile",
+								masterTransmissionList);
+                        } catch (FileNotFoundException |
+							UnsupportedEncodingException ex) {
                             System.err.println("Exception: " + ex);
                         }
                         System.exit(0);
@@ -239,20 +234,17 @@ public class Main {
                     break;
 
                 case "modifySettings":
-
-                    menu.modifySettings(currentUser, in, masterTransmissionList);
+                    menu.modifySettings(currentUser, in,
+						masterTransmissionList);
 
                     Main.sleep(500);
                     break;
 
                 default:
-
                     System.out.println("Command not recognized.");
-                    System.out.println();
+                    System.out.println("");
                     Main.sleep(500);
-
             }
-
         }
     }
 }
