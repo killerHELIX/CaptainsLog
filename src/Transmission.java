@@ -76,7 +76,7 @@ public class Transmission {
 		return favoritedBy.size();
 	}
 	
-    public boolean isPublic(){
+    public boolean isPublic() {
         return visible;
     }
 	
@@ -102,7 +102,8 @@ public class Transmission {
 		String portrait = String.join("\n", author.getPhoto()) + "\n";
 		
 		return portrait + author.getDisplayName() + " (" +
-			author.getUsername() + ")\n" + message + "\n";
+			author.getUsername() + ")\n" + message + "\n" +
+			getTimestamp() + "\n";
 	}
 	
 	/** For writing to files for storage - not to be printed to end user!*/

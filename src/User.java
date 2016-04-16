@@ -77,11 +77,27 @@ public class User extends Menu {
 	public void addFollower(User fo) {
 		followers.add(fo);
 	}
+	
+	public void removeFollower(User fo) {
+		followers.remove(fo);
+	}
+	
+	public ArrayList<User> getBlacklist() {
+		return blacklist;
+	}
+	
+	public void block(User u) {
+		blacklist.add(u);
+	}
+	
+	public void unblock(User u) {
+		blacklist.remove(u);
+	}
 		
 	public ArrayList<User> getFollowing() {
 		return following;
 	} 
-
+	
 	public void addFollowing(User us) {
                 us.addFollower(this);
 		following.add(us);
