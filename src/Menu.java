@@ -14,20 +14,46 @@ import java.util.Scanner;
 public class Menu {
 
     public void sortByPopularity(User currentUser,
-		ArrayList<Transmission> masterTransmissionList) {
+		ArrayList<Transmission> masterTransmissionList, Scanner in) {
+
+        Collections.sort(masterTransmissionList, new TCompByPopularity());
 
         ArrayList<Transmission> visibleTransmissions =
 			getVisibleTransmissions(currentUser, masterTransmissionList);
 
-        Collections.sort(visibleTransmissions, new TCompByPopularity());
-
         for (Transmission t : visibleTransmissions){
 
-            System.out.printf("[%d favorites] %s",
-				t.getNumFavorites(), t.toString());
+            System.out.printf("[%d] [%d favorites] %s", visibleTransmissions.indexOf(t), t.getNumFavorites(),
+                    t.toString());
         }
-		System.out.println("");
-    }
+
+        System.out.print("Enter the number of the transmission you want to favorite" +
+                "(-1 to return to main menu) \n>");
+
+            int index = Integer.valueOf(in.nextLine());
+
+            if (index == -1){
+                System.out.println("Returning to main menu...");
+
+            } else if (index <= visibleTransmissions.size()){
+
+                if (visibleTransmissions.get(index).getUsersWhoLike().contains(currentUser)){
+
+                    visibleTransmissions.get(index).isNoLongerLikedBy(currentUser);
+                    System.err.println("unfavorited" + visibleTransmissions.get(index));
+
+                } else {
+
+                    visibleTransmissions.get(index).isLikedBy(currentUser);
+                    System.err.println("favorited " + visibleTransmissions.get(index));
+                }
+
+            } else {
+                System.out.println("No transmission matches this index!");
+
+            }
+        }
+
 
     public void sortByTime(User currentUser,
 		ArrayList<Transmission> masterTransmissionList) {

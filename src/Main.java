@@ -128,7 +128,7 @@ public class Main {
 
                 case "sortByPopularity":
                     menu.sortByPopularity(currentUser,
-						masterTransmissionList);
+						masterTransmissionList, in);
                     Main.sleep(500);
                     break;
 
