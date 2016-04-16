@@ -99,8 +99,11 @@ public class Transmission {
 	
 	@Override
 	public String toString() {
-		String portrait = String.join("\n", author.getPhoto()) + "\n";
-		
+		String portrait = "";
+		String[] photo = author.getPhoto();
+		if (photo != null) {
+			portrait = String.join("\n", author.getPhoto()) + "\n";
+		}
 		return portrait + author.getDisplayName() + " (" +
 			author.getUsername() + ")\n" + message + "\n" +
 			getTimestamp() + "\n";

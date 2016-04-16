@@ -13,9 +13,11 @@ import java.util.Scanner;
 
 public class Menu {
 
-    public void sortByPopularity(User currentUser, ArrayList<Transmission> masterTransmissionList) {
+    public void sortByPopularity(User currentUser,
+		ArrayList<Transmission> masterTransmissionList) {
 
-        ArrayList<Transmission> visibleTransmissions = getVisibleTransmissions(currentUser, masterTransmissionList);
+        ArrayList<Transmission> visibleTransmissions =
+			getVisibleTransmissions(currentUser, masterTransmissionList);
 
         Collections.sort(visibleTransmissions, new TCompByPopularity());
 
@@ -25,9 +27,11 @@ public class Menu {
         }
     }
 
-    public void sortByTime(User currentUser, ArrayList<Transmission> masterTransmissionList) {
+    public void sortByTime(User currentUser,
+		ArrayList<Transmission> masterTransmissionList) {
 
-        ArrayList<Transmission> visibleTransmissions = getVisibleTransmissions(currentUser, masterTransmissionList);
+        ArrayList<Transmission> visibleTransmissions =
+			getVisibleTransmissions(currentUser, masterTransmissionList);
 
         Collections.sort(visibleTransmissions, new TCompByTime());
 
@@ -38,11 +42,11 @@ public class Menu {
 	
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
-        System.out.println("Please enter the username of the user that you would like to search for: ");
+        System.out.println("Please enter the username of the user\n" +
+			"that you would like to search for: ");
         String nm = t.nextLine();
-            
+        System.out.println(""); // padding
         for (User u : masterUserList){
-            
             if (u.getUsername().equals(nm)){
                 System.out.println("found user: " + u.getUsername());
                 return u;
@@ -50,42 +54,48 @@ public class Menu {
         }
 		return null;
     }
-    public Transmission searchForTransmission(String transmission, User currentUser, ArrayList<Transmission> mtl) {
-
-        ArrayList<Transmission> visibleTransmissions = getVisibleTransmissions(currentUser, mtl);
+    public Transmission searchForTransmission(String transmission,
+		User currentUser, ArrayList<Transmission> mtl) {
+		
+		System.out.println("");
+		
+        ArrayList<Transmission> visibleTransmissions =
+			getVisibleTransmissions(currentUser, mtl);
         boolean foundTransmission = false;
 
         for (Transmission t : visibleTransmissions) {
-
             if (t.getMessage().contains(transmission)) {
-
                 System.out.println(t.toString());
                 foundTransmission = true;
             }
         }
 
         if (!foundTransmission) {
-            System.out.println("No transmission found containing your search.");
+            System.out.println("No transmission found containing" +
+				" your search.");
         }
 
 		return null; // added null return for compilation
     }
 	
-    public boolean searchByHashtag(ArrayList<Transmission> masterTransmissionList, Scanner t) {
+    public boolean searchByHashtag(
+		ArrayList<Transmission> masterTransmissionList, Scanner t) {
 		
-        System.out.println("Please enter the hashtag of the transmission that you would like to search for: ");
+        System.out.println("Please enter the hashtag of the transmission\n" 
+			+ "that you would like to search for: ");
         String hashtag = t.nextLine();
         
         for (Transmission h : masterTransmissionList) {
-            
             if (h.getMessage().contains(hashtag)){
-                
-                System.out.println(h.getAuthor().getDisplayName() + " composed a transmission with your entered hashtag, and their transmission stated: " + h.getMessage());
+                System.out.println(h.getAuthor().getDisplayName() +
+					" composed a transmission\n" + "with your entered" +
+					" hashtag, and their transmission stated: " +
+					h.getMessage());
                 return true;
-            }     
-            else {
-                
-                System.out.println("The hashtag that you have entered: " + hashtag + " has not been used by any other users within CaptainsLog.");
+            } else {
+                System.out.println("The hashtag that you have entered: " + 
+				hashtag + "\nhas not been used by any other users on\n" +
+				"CaptainsLog.");
                 return false;
             }
         }
@@ -98,137 +108,127 @@ public class Menu {
         String input = y.nextLine();
 
         for (User u : masterUserList){
-
             if (u.getUsername().equals(input)){
-
-                System.out.println("User successfully found.  Enter your password: ");
+                System.out.println("User successfully found. " +
+					" Enter your password: ");
                 input = y.nextLine();
 
-                if (u.isPasswordMatched(input)){
-
-                    System.out.println("Password successfully matched.  Welcome, " + u.getUsername() + ".");
+                if (u.isPasswordMatched(input)) {
+                    System.out.println("Password successfully matched. " +
+						" Welcome, " + u.getUsername() + ".");
                     System.out.println();
                     return u;
-
                 } else {
-
                     System.out.println("Password not matched.");
                 }
             }
         }
-
         return null;
     }
     
     public boolean logout(Scanner y) {
-		
-                System.out.println("Are you sure you want to logout? (yes/no) ");
-                String inp = y.nextLine();
-                    
-                    if (inp.equals("yes")) {
-                        
-                        System.out.println("Logout successful.  See you, space cowboy.");
-                        return true;
-                    } else if (inp.equals("no")) {
-                    
-                        System.out.println("Returning to main menu.");
-                        return false;
-                    }
-                return false;             
+    	System.out.println("Are you sure you want to logout? (yes/no) ");
+        String inp = y.nextLine();
+        if (inp.equals("yes")) {
+			System.out.println("Logout successful. " +
+				" See you, space cowboy.");
+            return true;
+        } else if (inp.equals("no")) {
+        	System.out.println("Returning to main menu.");
+        }
+        return false;             
     }
     
-    public void modifySettings(User currentUser, Scanner in, ArrayList<Transmission> mtl) {
-
-                System.out.println("You have access to the following commands: \n" +
-                        "changeDisplayname \t changePassword \t changePhoto \n" +
-                        "currentInfo \n" +
-                        "Which one do you want to change? ");
-
+    public void modifySettings(User currentUser, Scanner in,
+		ArrayList<Transmission> mtl) {
+		System.out.println("You have access to the following commands: \n" +
+        	"changeDisplayname \t changePassword \t changePhoto \n" +
+            "currentInfo \n" + "Which one do you want to change? ");
                 switch(in.nextLine()) {
-
                     case "currentInfo":
-
-                        System.out.println("Username: " + currentUser.getUsername());
-                        System.out.println("Display name: " + currentUser.getDisplayName());
-                        System.out.println("Photo: " + currentUser.getPhoto());
-                        System.out.println("Followers: " + currentUser.getFollowers());
-                        System.out.println("Users Following: " + currentUser.getFollowing());
+                        System.out.println("Username: " +
+							currentUser.getUsername());
+                        System.out.println("Display name: " +
+							currentUser.getDisplayName());
+                        System.out.println("Photo: " +
+							currentUser.getPhoto());
+                        System.out.println("Followers: " +
+							currentUser.getFollowers());
+                        System.out.println("Users Following: " +
+							currentUser.getFollowing());
                         System.out.print("History: ");
                         for (Transmission t : mtl){
                             if (t.getAuthor().equals(currentUser)){
-                                System.out.printf("%s: %s %n", t.getTimestamp(), t.getMessage());
+                                System.out.printf("%s: %s %n",
+									t.getTimestamp(), t.getMessage());
                             }
                         }
-
-
                         break;
-
 
                     case "changeDisplayname":
 
-                         System.out.println("Current display name: " + currentUser.getDisplayName());
-                         System.out.println("Enter the display name you want: ");
+                         System.out.println("Current display name: " +
+							currentUser.getDisplayName());
+                         System.out.println("Enter the display name you" +
+							" want: ");
                          currentUser.setDisplayName(in.nextLine());
-                         System.out.println("Your new display name is " + currentUser.getDisplayName());
-
+                         System.out.println("Your new display name is " +
+							currentUser.getDisplayName());
                          break;
 
                     case "changePassword":
 
-                         System.out.println("Enter your current password: ");
+                         System.out.println("Enter your current" +
+							"password: ");
                          String oldPass = in.nextLine();
-
                          if (currentUser.isPasswordMatched(oldPass)){
-
-                             System.out.println("Password successfully matched.");
-                             System.out.println("Enter your new password: ");
+                             System.out.println("Password successfully" +
+								"matched.");
+                             System.out.println("Enter your new" + 
+								"password: ");
                              String newPass = in.nextLine();
-
-                             System.out.println("Re-enter your new password: ");
+                             System.out.println("Re-enter your new" +
+								"password: ");
                              String confirm = in.nextLine();
-
                              if (newPass.equals(confirm)){
-
                                  currentUser.setPassword(confirm);
-                                 System.out.println("New password accepted.");
-
+                                 System.out.println("New password" +
+									"accepted.");
                              } else {
-                                 System.out.println("New password does not match in both cases!");
+                             	System.out.println("New password does" + 
+									"not match in both cases!");
                              }
                          }
-
                          break;
                      
                     case "changePhoto":
-                         System.out.println("Enter the filepath for a new ASCII photo: ");
-                         String filepath = in.nextLine();
-                         try {
-                             String[] newPhoto = IO.getASCIIArt(filepath, true);
-
+                        System.out.println("Enter the filepath for" +
+						"a new ASCII photo: ");
+                        String filepath = in.nextLine();
+                        try {
+                             String[] newPhoto = IO.getASCIIArt(filepath,
+								true);
                          } catch (IOException ex) {
-
                              System.err.println(ex);
                          }
-
                          System.out.println("Enter new Photo");
                          break;
 
                     default:
-
                         System.out.println("Command not recognized.");
                         break;
                 }
     }
 
-    private ArrayList<Transmission> getVisibleTransmissions(User currentUser,
-                                                            ArrayList<Transmission> masterTransmissionList){
+    private ArrayList<Transmission> getVisibleTransmissions(
+		User currentUser, ArrayList<Transmission> masterTransmissionList){
 
         ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
 
         for (User u : currentUser.getFollowing()){
-
             for (Transmission t : masterTransmissionList){
-				if (t.getAuthor().equals(u) && !currentUser.getBlacklist().contains(u)) {
+				if (t.getAuthor().equals(u) &&
+					!currentUser.getBlacklist().contains(u)) {
                 	visibleTransmissions.add(t);
 				}
             }
