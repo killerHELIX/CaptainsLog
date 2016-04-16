@@ -77,7 +77,7 @@ public class Main {
 
                     for (Transmission t : masterTransmissionList){
 
-                        System.out.println(t.getMessage());
+                        System.out.printf("[%s] %s %n", masterTransmissionList.indexOf(t), t.getMessage());
 
                     }
 
@@ -98,40 +98,31 @@ public class Main {
 
                     System.out.println("Here are all of your transmissions: ");
 
-                    ArrayList<Transmission> history = currentUser.getHistory();
+                    for (Transmission t : masterTransmissionList){
 
-                    for (int i = 0; i < currentUser.getHistory().size(); i ++){
+                        if (t.getAuthor().equals(currentUser)){
 
-                        System.out.printf("[%d] %s: %s %n", i, history.get(i).getTimestamp(), history.get(i).getMessage());
+                            System.out.printf("[%s] %s: %s %n", masterTransmissionList.indexOf(t), t.getTimestamp(), t.getMessage());
+
+                        }
                     }
 
-                    System.out.println();
-                    System.out.println("Select the number of the transmission you want to delete.  Enter -1 to cancel.");
-                    int number = Integer.valueOf(in.nextLine());
+                    System.out.println("Enter the index you want to delete (-1 to cancel): ");
+                    int index = Integer.valueOf(in.nextLine());
 
-                    if (number != -1 && number <= history.size()){
+                    if (index == -1){
+                        System.out.println("Cancelling deletion.  Returning to main menu.");
+                        break;
 
-                        // also remove from masterTransmissionList
-                        for (int i = 0; i < masterTransmissionList.size(); i++){
+                    } else if (index <= masterTransmissionList.size()){
 
-                            if (currentUser.getHistory().get(number).getMessage().equals(
-                                    masterTransmissionList.get(i).getMessage())){
-
-                                masterTransmissionList.remove(i);
-
-                            }
-                        }
-
-                        currentUser.getHistory().remove(number);
-                        currentUser.getHistory().trimToSize();
-
-                    } else if (number != -1){
-
-                        System.out.println("No transmission matches this number.");
+                        System.out.printf("Removing index [%d]: '%s'...", index, masterTransmissionList.get(index).getMessage());
+                        masterTransmissionList.remove(index);
+                        System.out.println("Removed.");
 
                     } else {
 
-                        System.out.println("Cancelling deletion.  Returning to main menu.");
+                        System.out.println("No transmission matches the selected index.");
                     }
 
                     Main.sleep(500);
@@ -181,7 +172,7 @@ public class Main {
 
                 case "modifySettings":
 
-                    menu.modifySettings(currentUser, in);
+                    menu.modifySettings(currentUser, in, masterTransmissionList);
 
                     Main.sleep(500);
                     break;

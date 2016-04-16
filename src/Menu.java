@@ -32,7 +32,7 @@ public class Menu {
         Collections.sort(visibleTransmissions, new TCompByTime());
 
         for (Transmission t : visibleTransmissions){
-            System.out.println(t.getTimestamp() + ": " + t.getMessage());
+            System.out.printf("%s (%s): %s %n", t.getAuthor().getDisplayName(), t.getTimestamp(), t.getMessage());
         }
     }
 	
@@ -137,7 +137,7 @@ public class Menu {
                 return false;             
     }
     
-    public void modifySettings(User currentUser, Scanner in) {
+    public void modifySettings(User currentUser, Scanner in, ArrayList<Transmission> mtl) {
 
                 System.out.println("You have access to the following commands: \n" +
                         "changeDisplayname \t changePassword \t changePhoto \n" +
@@ -153,7 +153,13 @@ public class Menu {
                         System.out.println("Photo: " + currentUser.getPhoto());
                         System.out.println("Followers: " + currentUser.getFollowers());
                         System.out.println("Users Following: " + currentUser.getFollowing());
-                        System.out.println("History: " + currentUser.getHistory());
+                        System.out.print("History: ");
+                        for (Transmission t : mtl){
+                            if (t.getAuthor().equals(currentUser)){
+                                System.out.printf("%s: %s %n", t.getTimestamp(), t.getMessage());
+                            }
+                        }
+
 
                         break;
 
