@@ -20,9 +20,7 @@ public class Menu {
     public boolean sortByPopularity(User currentUser,
 		ArrayList<Transmission> masterTransmissionList, Scanner in) {
 
-        ArrayList<Transmission> masterList = masterTransmissionList;
-
-        Collections.sort(masterList, new TCompByPopularity());
+        Collections.sort(masterTransmissionList, new TCompByPopularity());
 
         ArrayList<Transmission> visibleTransmissions =
 			getVisibleTransmissions(currentUser, masterTransmissionList);
