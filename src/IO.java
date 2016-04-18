@@ -1,7 +1,7 @@
-/* IO manager for CaptainsLog.
- * @author James Murphy
- * CPSC 240 / Object Oriented Programming
- * Twitter Project
+/** IO manager for CaptainsLog.
+ *  @author James Murphy
+ *  CPSC 240 / Object Oriented Programming
+ *  Twitter Project
  */
 
 import java.util.ArrayList;
@@ -9,16 +9,15 @@ import java.util.Scanner;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.File;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
 public class IO {
-	/* Obtains ASCII art from a file.
-	 * @param filename The name of the file containing the ASCII art.
-	 * @param avatar Whether the ASCII art is an avatar and must be square.
-	 * @throws IOException When file is missing or if avatar text not square
-	 * @return String[] containing the text lines of the ASCII art.
+    /** Obtains ASCII art from a file.
+	 *  @param filename The name of the file containing the ASCII art.
+	 *  @param avatar Whether the ASCII art is an avatar and must be square.
+	 *  @throws IOException When file is missing or if avatar text not square
+	 *  @return String[] containing the text lines of the ASCII art.
 	*/
 	public static String[] getASCIIArt(String filename, boolean avatar)
 		throws IOException {
@@ -54,7 +53,13 @@ public class IO {
 		return output;
 	}
 	
-	// save user data to file
+    /**
+     * Saves user data to file
+     * @param filename the file being written to
+     * @param users the users data is being taken from
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     */
 	public static void saveUsers(String filename, ArrayList<User> users)
 		throws FileNotFoundException, UnsupportedEncodingException {
 		
@@ -66,7 +71,11 @@ public class IO {
 		}
 	}
 	
-	// pull user data out of file
+    /**
+     * Pulls user data out of a file
+     * @param filename the file being read
+     * @return a list of users generated from parsing info from the file
+     */
 	public static ArrayList<User> loadUsers(String filename) {
 		ArrayList<User> users = new ArrayList<>();
 		Scanner fileIn = null;
@@ -79,15 +88,23 @@ public class IO {
 		while (fileIn.hasNextLine()) {
 			try {
 				line = fileIn.nextLine();
-				users.add(User.fromRecord(line));
+
+				    users.add(User.fromRecord(line));
+
 			} catch (Exception e) {
 				
 			}
 		}
 		return users;
 	}
-	
-	// save transmission data to file
+
+    /**
+     * Saves transmission data to file
+     * @param filename the file to write to
+     * @param transmissions the transmissions being written
+     * @throws FileNotFoundException
+     * @throws UnsupportedEncodingException
+     */
 	public static void saveTransmissions(String filename,
 		ArrayList<Transmission> transmissions) throws FileNotFoundException,
 		UnsupportedEncodingException {
@@ -98,8 +115,13 @@ public class IO {
 			tout.close();
 		}
 	}
-	
-	// pull transmission data out of file
+
+    /**
+     * Pulls transmission data out of a file
+     * @param filename the file being read from
+     * @param users the master user list
+     * @return list of transmissions generated from the file
+     */
 	public static ArrayList<Transmission>
 		loadTransmissions(String filename, ArrayList<User> users) {
 

@@ -1,19 +1,23 @@
-/** Menu class for CaptainsLog.
+/** Menu class for CaptainsLog.  Responsible for most functionality regarding the menus.
  *  @author James Murphy
  *  @author Ryan Harris
  *  @author Josh Williams
  *  @author Stephen Wilson
  */
 
-
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
 public class Menu {
 
-    public void sortByPopularity(User currentUser,
+    /**
+     * @param currentUser the current user
+     * @param masterTransmissionList the master transmission list
+     * @param in a Scanner
+     * @return true if display is successful, otherwise false
+     */
+    public boolean sortByPopularity(User currentUser,
 		ArrayList<Transmission> masterTransmissionList, Scanner in) {
 
         Collections.sort(masterTransmissionList, new TCompByPopularity());
@@ -21,13 +25,19 @@ public class Menu {
         ArrayList<Transmission> visibleTransmissions =
 			getVisibleTransmissions(currentUser, masterTransmissionList);
 
+
+        if (visibleTransmissions.isEmpty()){
+            System.out.println("No transmissions to see here.  Go follow somebody!");
+            return false;
+        }
+
         for (Transmission t : visibleTransmissions){
 
-            System.out.printf("[%d] [%d favorites] %s", visibleTransmissions.indexOf(t), t.getNumFavorites(),
+            System.out.printf("[%d] [%d favorites] %n%s", visibleTransmissions.indexOf(t), t.getNumFavorites(),
                     t.toString());
         }
 
-        System.out.print("Enter the number of the transmission you want to favorite" +
+        System.out.print("Enter the number of the transmission you want to favorite/unfavorite " +
                 "(-1 to return to main menu) \n>");
 
             int index = Integer.valueOf(in.nextLine());
@@ -40,35 +50,83 @@ public class Menu {
                 if (visibleTransmissions.get(index).getUsersWhoLike().contains(currentUser)){
 
                     visibleTransmissions.get(index).isNoLongerLikedBy(currentUser);
-                    System.err.println("unfavorited" + visibleTransmissions.get(index));
+                    System.out.println("Unfavorited!");
 
                 } else {
 
                     visibleTransmissions.get(index).isLikedBy(currentUser);
-                    System.err.println("favorited " + visibleTransmissions.get(index));
+                    System.out.println("Favorited!");
                 }
 
             } else {
                 System.out.println("No transmission matches this index!");
 
             }
+
+        return true;
         }
 
 
-    public void sortByTime(User currentUser,
-		ArrayList<Transmission> masterTransmissionList) {
+    /**
+     * @param currentUser the current user
+     * @param masterTransmissionList the master transmission list
+     * @param in a Scanner
+     * @return true if display is successful, otherwise false
+     */
+    public boolean sortByTime(User currentUser,
+		ArrayList<Transmission> masterTransmissionList, Scanner in) {
 
         ArrayList<Transmission> visibleTransmissions =
 			getVisibleTransmissions(currentUser, masterTransmissionList);
 
         Collections.sort(visibleTransmissions, new TCompByTime());
 
-        for (Transmission t : visibleTransmissions){
-            System.out.println(t.toString());
+        if (visibleTransmissions.isEmpty()){
+            System.out.println("No transmissions to see here.  Go follow somebody!");
+            return false;
         }
-		System.out.println("");
+
+        for (Transmission t : visibleTransmissions){
+
+            System.out.printf("[%d] %n%s", visibleTransmissions.indexOf(t),
+                    t.toString());
+        }
+
+        System.out.print("Enter the number of the transmission you want to favorite/unfavorite " +
+                "(-1 to return to main menu) \n>");
+
+        int index = Integer.valueOf(in.nextLine());
+
+        if (index == -1){
+            System.out.println("Returning to main menu...");
+
+        } else if (index <= visibleTransmissions.size()){
+
+            if (visibleTransmissions.get(index).getUsersWhoLike().contains(currentUser)){
+
+                visibleTransmissions.get(index).isNoLongerLikedBy(currentUser);
+                System.out.println("Unfavorited!");
+
+            } else {
+
+                visibleTransmissions.get(index).isLikedBy(currentUser);
+                System.out.println("Favorited!");
+            }
+
+        } else {
+            System.out.println("No transmission matches this index!");
+
+        }
+
+        return true;
     }
-	
+
+    /**
+     *
+     * @param masterUserList the master user list
+     * @param t a Scanner
+     * @return the searched user or null if not found
+     */
     public User searchForUser(ArrayList<User> masterUserList, Scanner t) {
 
         System.out.print("\nPlease enter the username of the user\n" +
@@ -83,7 +141,14 @@ public class Menu {
         }
 		return null;
     }
-    public Transmission searchForTransmission(String transmission,
+
+    /**
+     *
+     * @param transmission the string to search for
+     * @param currentUser the current user
+     * @param mtl the master transmission list
+     */
+    public void searchForTransmission(String transmission,
 		User currentUser, ArrayList<Transmission> mtl) {
 		
 		System.out.println("");
@@ -103,10 +168,12 @@ public class Menu {
             System.out.println("No transmission found containing" +
 				" your search.\n");
         }
-
-		return null; // added null return for compilation
     }
-	
+
+    /**
+     * @param masterTransmissionList the master transmission list
+     * @param t a Scanner
+     */
     public void searchByHashtag(ArrayList<Transmission>
 		masterTransmissionList, Scanner t) {
 
@@ -128,11 +195,16 @@ public class Menu {
 
         if (notFound) {
 
-            System.out.printf("%s has not been used by anybody yet.\n",
+            System.out.printf("%s hasn't been used by anybody...yet.  Be the first.\n",
 				hashtag);
         }
     }
-    
+
+    /**
+     * @param y a Scanner
+     * @param masterUserList the master user list
+     * @return the searched user or null if not found
+     */
     public User login(Scanner y, ArrayList<User> masterUserList) {
 
         System.out.print("Welcome.  Enter your username" +
@@ -158,9 +230,12 @@ public class Menu {
             }
         }
 
-        System.out.print("Username not found.  " +
-        	"Would you like to register for an account?" +
-			" (yes/no)\n> ");
+        if (!input.equals("0")){
+        System.out.println("Username not found.");
+        }
+
+        System.out.print("Would you like to register for an account?" +
+        " (yes/no)\n> ");
 
         input = y.nextLine().toLowerCase();
         switch(input){
@@ -195,7 +270,11 @@ public class Menu {
         }
         return null;
     }
-    
+
+    /**
+     * @param y a Scanner
+     * @return true if confirmed to logout, otherwise false
+     */
     public boolean logout(Scanner y) {
     	System.out.print("Are you sure you want to log out? (yes/no) \n> ");
         String inp = y.nextLine();
@@ -208,7 +287,13 @@ public class Menu {
         }
         return false;             
     }
-    
+
+    /**
+     *
+     * @param currentUser the current user
+     * @param in a Scanner
+     * @param mtl the master transmission list
+     */
     public void modifySettings(User currentUser, Scanner in,
 		ArrayList<Transmission> mtl) {
 
@@ -305,17 +390,33 @@ public class Menu {
                 }
     }
 
+    /**
+     *
+     * @param currentUser the current user
+     * @param masterTransmissionList the master transmission list
+     * @return the list of visible transmissions specific to current user
+     */
     private ArrayList<Transmission> getVisibleTransmissions(
 		User currentUser, ArrayList<Transmission> masterTransmissionList){
 
         ArrayList<Transmission> visibleTransmissions = new ArrayList<>();
 
+        // populate visible transmissions based on currentUser following
         for (User u : currentUser.getFollowing()){
             for (Transmission t : masterTransmissionList){
 				if (t.getAuthor().equals(u) &&
 					!currentUser.getBlacklist().contains(u)) {
                 	visibleTransmissions.add(t);
 				}
+            }
+        }
+
+        // then populate visible transmissions based on @target from specific transmissions
+        for (Transmission t : masterTransmissionList){
+
+            if (t.getTargets().contains(currentUser) &&
+                    !currentUser.getBlacklist().contains(t.getAuthor()) && !visibleTransmissions.contains(t)){
+                visibleTransmissions.add(t);
             }
         }
 

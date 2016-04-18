@@ -1,6 +1,8 @@
-/* Transmission data member for CaptainsLog.
- *  @author Ryan Harris
+/** Transmission class for CaptainsLog.
  *  @author James Murphy
+ *  @author Ryan Harris
+ *  @author Josh Williams
+ *  @author Stephen Wilson
  */
 
 import java.time.LocalDateTime;
@@ -8,6 +10,8 @@ import java.util.ArrayList;
 import java.lang.Boolean;
 
 public class Transmission {
+
+    /** These fields hold the data for each individual transmission */
 
     private String message;
     private ArrayList<String> hashtags;
@@ -17,7 +21,7 @@ public class Transmission {
     private ArrayList<User> favoritedBy;
     private LocalDateTime timeCreated;
 
-    /* Constructor for Transmission.
+    /** Constructor for Transmission.
      *
      * @param message the content of the transmission
      * @param author the User who created the transmission
@@ -35,11 +39,13 @@ public class Transmission {
 		
 		targets = new ArrayList<>();
 		hashtags = new ArrayList<>();
-		
+
+        // if the message contains double spaces anywhere this will break
+
 		// populated @targets and #hashtags
 		tokens = message.split(" ");
 		for (int i = 0; i < tokens.length; i++) {
-			if (tokens[i].charAt(0) == '@') {
+			if (tokens[i].charAt(0) == '@' && !tokens[i].isEmpty()) {
 				// awful linear search algorithm
 				for (User u : userList) {
 					if (u.getUsername().equals(tokens[i].substring(1))) {
@@ -48,7 +54,7 @@ public class Transmission {
 					}
 				}
 			}
-			if (tokens[i].charAt(0) == '#') {
+			if (tokens[i].charAt(0) == '#'&& !tokens[i].isEmpty()) {
 				this.hashtags.add(tokens[i]);
 			}
 		}
@@ -70,6 +76,10 @@ public class Transmission {
 
     public ArrayList<String> getHashtags(){
         return hashtags;
+    }
+
+	public ArrayList<User> getTargets(){
+        return targets;
     }
 	
 	public int getNumFavorites() {
@@ -106,7 +116,7 @@ public class Transmission {
 	
 	@Override
 	public String toString() {
-		return this.author.toString() + message + "\n" +
+		return this.author.toString() + ": " + message + "\n" +
 			getTimestamp() + "\n";
 	}
 	

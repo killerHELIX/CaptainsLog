@@ -1,3 +1,10 @@
+/** Main class for CaptainsLog.
+ *  @author James Murphy
+ *  @author Ryan Harris
+ *  @author Josh Williams
+ *  @author Stephen Wilson
+ */
+
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -16,24 +23,33 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
 
+        // initialize required lists and users
         Menu menu = new Menu();
         User currentUser = new User();
         User searchedUser = new User();
         ArrayList<User> masterUserList = new ArrayList<>();
         ArrayList<Transmission> masterTransmissionList = new ArrayList<>();
 
-        // load individual User info
+        // load individual User info from file
         masterUserList = IO.loadUsers("usersFile");
         for (User u : masterUserList){
             u.loadUserLists(masterUserList);
         }
 
+        // make every user follow themselves
+        // before writing this info to file, remove u from following list to prevent duplicates
+        for (User u : masterUserList){
+            u.addFollowing(u);
+        }
+
+        // load transmissions from file
         masterTransmissionList = IO.loadTransmissions(
 			"transmissionsFile", masterUserList);
 
         boolean isInMenu = true;
         boolean isLoggedIn = false;
 
+        // get login status before displaying menu
         if (!isLoggedIn){
 
             currentUser = menu.login(in, masterUserList);
@@ -45,6 +61,8 @@ public class Main {
             }
         }
 
+        // bulk of menu begins here
+
         while (isInMenu && isLoggedIn){
             System.out.println(
 				"You have access to the following commands: ");
@@ -55,7 +73,9 @@ public class Main {
 
             System.out.print("Enter your choice: \n>");
             switch(in.nextLine()) {
-                case "test":
+
+                // prints all transmissions and all users
+                case "debug":
                     for (Transmission t : masterTransmissionList) {
 
                         System.out.println(t);
@@ -68,30 +88,36 @@ public class Main {
                     Main.sleep(500);
                     break;
 
+                // compose a transmission
                 case "compose":
                     System.out.print("You're now creating a" +
-					"transmission.\n What do you want to transmit?\n>");
+					" transmission.\n What do you want to transmit? (reminder: double spacing is against the law)\n>");
                     String input = in.nextLine();
 					
-					// enforce twitter charcount limit
+					// enforce charcount limit
 					if (input.length() > 140) {
 						System.out.println("Message too long!" +
 							" Keep it under 140, ya pirate!");
 						break;
 					}
+
+                    // add this transmission to the master list
                     masterTransmissionList.add(
 						new Transmission(input, currentUser,
 						true, masterUserList));
 
+                    System.out.println("Transmission complete.  Returning to main menu.");
                     Main.sleep(500);
                     break;
 
+                // display all currentUser transmissions then select for deletion
                 case "delete":
                     System.out.println("Here are all of your" +
 						" transmissions: ");
 
                     for (Transmission t : masterTransmissionList){
                         if (t.getAuthor().equals(currentUser)){
+
                             System.out.printf("[%s] %s: %s %n",
 								masterTransmissionList.indexOf(t),
 								t.getTimestamp(), t.getMessage());
@@ -109,7 +135,7 @@ public class Main {
                         break;
 
                     } else if (index <= masterTransmissionList.size()){
-                        System.out.printf("Removing index [%d]: '%s'...",
+                        System.out.printf("Removing index [%d]: '%s'... %n",
 							index,
 							masterTransmissionList.get(index).getMessage());
                         masterTransmissionList.remove(index);
@@ -121,20 +147,25 @@ public class Main {
                     Main.sleep(500);
                     break;
 
+                // standard view in chronological order
                 case "sortByTime":
-                    menu.sortByTime(currentUser, masterTransmissionList);
+                    menu.sortByTime(currentUser, masterTransmissionList, in);
                     Main.sleep(500);
                     break;
 
+                // view sorted by amount of favorites
                 case "sortByPopularity":
                     menu.sortByPopularity(currentUser,
 						masterTransmissionList, in);
                     Main.sleep(500);
                     break;
 
+                // search for an exact username then change relationship with found user
                 case "searchForUser":
                     searchedUser = menu.searchForUser(masterUserList, in);
                     if (searchedUser == null){
+
+                        System.out.println("User not found.  Make sure the username is correct.");
                         break;
                     }
 
@@ -143,52 +174,60 @@ public class Main {
                     System.out.print("follow \t unfollow \t block \t" +
 						"unblock \n" + "viewHistory \n \n>");
 
+                    // double switch statements are the new norm
+                    // secondary menu
                     switch(in.nextLine()){
+
+                        // currentUser follows searchedUser
                         case "follow":
                             if (!currentUser.getFollowing().contains(
 								searchedUser)){
                                 currentUser.addFollowing(searchedUser);
-                                System.out.printf("Followed %s!", searchedUser.getDisplayName());
+                                System.out.printf("Followed %s! %n", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 									"You're already following this user.");
                             }
                             break;
 
+                        // currentUser unfollows searchedUser
                         case "unfollow":
                             if (currentUser.getFollowing().contains(
 								searchedUser)) {
                                 currentUser.removeFollowing(searchedUser);
-                                System.out.printf("Unfollowed %s!", searchedUser.getDisplayName());
+                                System.out.printf("Unfollowed %s! %n", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 									"You're not following this user.");
                             }
                             break;
 
+                        // currentUser blocks searchedUser
                         case "block":
                             if (!currentUser.getBlacklist().contains(
 								searchedUser)) {
 
                                 currentUser.block(searchedUser);
-                                System.out.printf("Blocked %s!", searchedUser.getDisplayName());
+                                System.out.printf("Blocked %s! %n", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 								"This user is already blocked.");
                             }
                             break;
 
+                        // currentUser unblocks searchedUser
                         case "unblock":
                             if (currentUser.getBlacklist().contains(
 								searchedUser)) {
                                 currentUser.unblock(searchedUser);
-                                System.out.printf("Unblocked %s!", searchedUser.getDisplayName());
+                                System.out.printf("Unblocked %s! %n", searchedUser.getDisplayName());
                             } else {
                                 System.out.println(
 									"This user isn't blocked.");
                             }
                             break;
 
+                        // view searchedUser's history
                         case "viewHistory":
                             for (Transmission t : masterTransmissionList){
                                 if (t.getAuthor().equals(searchedUser)){
@@ -202,25 +241,27 @@ public class Main {
                             break;
                     }
 
-
                     Main.sleep(500);
                     break;
 
+                // search the master transmission list and return any that contain the search
                 case "searchForTransmission":
                     System.out.print("Enter what you'd like to" +
 						" search for: \n>");
-                    menu.searchForTransmission(in.next(),
+                    menu.searchForTransmission(in.nextLine(),
 						currentUser, masterTransmissionList);
 
                     Main.sleep(500);
                     break;
 
+                // search master transmission list by a specific hashtag
                 case "searchByHashtag":
                     menu.searchByHashtag(masterTransmissionList, in);
 
                     Main.sleep(500);
                     break;
 
+                // logout and write info to files before exiting
                 case "logout":
 
                     if (menu.logout(in)){
@@ -229,6 +270,12 @@ public class Main {
                         try {
                             IO.saveTransmissions("transmissionsFile",
 								masterTransmissionList);
+
+                            // remove user from their own following list to prevent duplicates
+                            // then call saveUsers
+                            for (User u : masterUserList){
+                                u.removeFollowing(u);
+                            }
 
                             IO.saveUsers("usersFile",
                                     masterUserList);
@@ -241,6 +288,7 @@ public class Main {
                     }
                     break;
 
+                // modify currentUser settings
                 case "modifySettings":
                     menu.modifySettings(currentUser, in,
 						masterTransmissionList);

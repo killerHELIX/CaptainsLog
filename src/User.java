@@ -1,3 +1,10 @@
+/** User class for CaptainsLog.
+ *  @author James Murphy
+ *  @author Ryan Harris
+ *  @author Josh Williams
+ *  @author Stephen Wilson
+ */
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,26 +26,27 @@ public class User extends Menu {
         followers = new ArrayList<>();
         following = new ArrayList<>();
 
-        this.following.add(this);
-		
 		blacklistLoad = null;
 		followersLoad = null;
 		followingLoad = null;
-		
+
         photo = null;
         username = "";
         displayName = "";
         password = "";
 
     }
-	
+
+    /**
+     * @param usrnm the desired username
+     * @param dspnm the desired displayname
+     * @param passwd the desired password
+     */
 	public User (String usrnm, String dspnm, String passwd) {
 		blacklist = new ArrayList<>();
 		followers = new ArrayList<>();
 		following = new ArrayList<>();
 
-        this.following.add(this);
-		
 		photo = null;
 		username = usrnm;
 		displayName = dspnm;
@@ -103,18 +111,33 @@ public class User extends Menu {
 	} 
 	
 	public void addFollowing(User us) {
-        us.addFollower(this);
-		following.add(us);
+
+        if (us != this){
+            us.addFollower(this);
+		    following.add(us);
+        } else {
+            following.add(us);
+        }
 	}
 
 	public void removeFollowing(User us) {
 		following.remove(us);
 	}
 
+    /**
+     * Check if passwords match without compromising password security
+     * @param in the string to check
+     * @return true if password is equal to in, otherwise false
+     */
 	public boolean isPasswordMatched (String in) {
         return (in.equals(this.password));
     }
-	
+
+    /**
+     * Small override to simplify code in the menu
+     * @param u the user to compare to
+     * @return true if usernames are equal
+     */
 	public boolean equals(User u) {
 		return this.getUsername() == u.getUsername();
 	}
@@ -133,7 +156,11 @@ public class User extends Menu {
 		return portrait +  username + " (" + displayName + ")";
 	}
 	
-	// create record string for file storage
+    /**
+     * Creates record string for file storage
+     * @return a string containing all information related to this user
+     * @throws IndexOutOfBoundsException
+     */
 	public String toRecord() throws IndexOutOfBoundsException {
 		String followers = "null", subscriptions = "null";
 		String photo = "null";
@@ -173,6 +200,12 @@ public class User extends Menu {
 	}
 	
 	// parse a line from the record file
+
+    /**
+     * Parses a line from a record file
+     * @param record the line to be parsed
+     * @return the User created from record info
+     */
 	public static User fromRecord(String record) {
 		String[] fields = record.split("\f");
 		String[] photo = fields[2].split(",");
@@ -189,6 +222,13 @@ public class User extends Menu {
 	}
 	
 	// load relational data after users and transmissions are loaded
+
+    /**
+     * Loads relational data after users and transmissions are loaded
+     * @param blacklisted the list of blacklisted users
+     * @param followers the list of followers
+     * @param following the list of users following
+     */
 	private void setUserLists(String[] blacklisted, String[] followers,
 		String[] following) {
 		if (!blacklisted[0].equals("null")) {
@@ -203,6 +243,10 @@ public class User extends Menu {
 	}
 	
 	// call this in main() for each user in the master user list
+
+    /**
+     * @param userList the master list of users to search
+     */
 	public void loadUserLists(ArrayList<User> userList) {
 		if (blacklistLoad != null) {
 			for (String s : blacklistLoad) {
