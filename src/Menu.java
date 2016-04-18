@@ -20,7 +20,9 @@ public class Menu {
     public boolean sortByPopularity(User currentUser,
 		ArrayList<Transmission> masterTransmissionList, Scanner in) {
 
-        Collections.sort(masterTransmissionList, new TCompByPopularity());
+        ArrayList<Transmission> masterList = masterTransmissionList;
+
+        Collections.sort(masterList, new TCompByPopularity());
 
         ArrayList<Transmission> visibleTransmissions =
 			getVisibleTransmissions(currentUser, masterTransmissionList);
@@ -50,11 +52,13 @@ public class Menu {
                 if (visibleTransmissions.get(index).getUsersWhoLike().contains(currentUser)){
 
                     visibleTransmissions.get(index).isNoLongerLikedBy(currentUser);
+
                     System.out.println("Unfavorited!");
 
                 } else {
 
                     visibleTransmissions.get(index).isLikedBy(currentUser);
+
                     System.out.println("Favorited!");
                 }
 
@@ -226,6 +230,8 @@ public class Menu {
 
                 } else {
                     System.out.println("Password not matched.");
+
+                    return null;
                 }
             }
         }
@@ -238,37 +244,34 @@ public class Menu {
         " (yes/no)\n> ");
 
         input = y.nextLine().toLowerCase();
-        switch(input){
+        switch(input) {
             case "yes":
                 System.out.print("Good choice.  What do you want" +
-					" your username to be? (IT IS PERMANENT) \n> ");
+                        " your username to be? (IT IS PERMANENT) \n> ");
                 String username = y.nextLine();
 
                 System.out.print("What about your display name?\n> ");
                 String displayname = y.nextLine();
 
                 System.out.print("Final thing.  Enter your" +
-					" password: \n> ");
+                        " password: \n> ");
                 String password = y.nextLine();
 
                 User newUser = new User(username, displayname,
-					password);
+                        password);
                 masterUserList.add(newUser);
                 return newUser;
 
             case "no":
                 System.out.println("Well, you're missing out." +
-					" Later, nerd.");
+                        " Later, nerd.");
                 return null;
 
-                default:
-                    System.out.println("You didn't select 'yes' or 'no'." +
-						"  The gods frown upon you.  Begone, demon.");
-                    System.exit(2);
-                    break;
+            default:
+
+                return null;
 
         }
-        return null;
     }
 
     /**
