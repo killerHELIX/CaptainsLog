@@ -18,6 +18,8 @@ public class User extends Menu {
         blacklist = new ArrayList<>();
         followers = new ArrayList<>();
         following = new ArrayList<>();
+
+        this.following.add(this);
 		
 		blacklistLoad = null;
 		followersLoad = null;
@@ -34,6 +36,8 @@ public class User extends Menu {
 		blacklist = new ArrayList<>();
 		followers = new ArrayList<>();
 		following = new ArrayList<>();
+
+        this.following.add(this);
 		
 		photo = null;
 		username = usrnm;
